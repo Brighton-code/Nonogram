@@ -22,6 +22,7 @@ namespace Nonogram.Models
             Password = password;
         }
 
+        // https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
         public static DPassword HashPassword(string password1, string password2)
         {
             if (password1 != password2)
