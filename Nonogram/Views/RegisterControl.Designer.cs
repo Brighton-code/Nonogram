@@ -32,7 +32,7 @@
             btnLogin = new Button();
             btnRegister = new Button();
             tbPassword2 = new TextBox();
-            tbPassword = new TextBox();
+            tbPassword1 = new TextBox();
             tbName = new TextBox();
             lblRegister = new Label();
             pnlLayout.SuspendLayout();
@@ -45,7 +45,7 @@
             pnlLayout.Controls.Add(btnLogin);
             pnlLayout.Controls.Add(btnRegister);
             pnlLayout.Controls.Add(tbPassword2);
-            pnlLayout.Controls.Add(tbPassword);
+            pnlLayout.Controls.Add(tbPassword1);
             pnlLayout.Controls.Add(tbName);
             pnlLayout.Controls.Add(lblRegister);
             pnlLayout.Location = new Point(0, 0);
@@ -78,6 +78,7 @@
             btnRegister.TabIndex = 9;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
             // tbPassword2
             // 
@@ -88,24 +89,24 @@
             tbPassword2.MaxLength = 50;
             tbPassword2.Name = "tbPassword2";
             tbPassword2.PasswordChar = '*';
-            tbPassword2.PlaceholderText = "Password";
+            tbPassword2.PlaceholderText = "Confirm Password";
             tbPassword2.Size = new Size(400, 50);
             tbPassword2.TabIndex = 8;
             tbPassword2.TextAlign = HorizontalAlignment.Center;
             // 
-            // tbPassword
+            // tbPassword1
             // 
-            tbPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbPassword.Font = new Font("Segoe UI", 12F);
-            tbPassword.Location = new Point(50, 175);
-            tbPassword.Margin = new Padding(0);
-            tbPassword.MaxLength = 50;
-            tbPassword.Name = "tbPassword";
-            tbPassword.PasswordChar = '*';
-            tbPassword.PlaceholderText = "Password";
-            tbPassword.Size = new Size(400, 50);
-            tbPassword.TabIndex = 7;
-            tbPassword.TextAlign = HorizontalAlignment.Center;
+            tbPassword1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbPassword1.Font = new Font("Segoe UI", 12F);
+            tbPassword1.Location = new Point(50, 175);
+            tbPassword1.Margin = new Padding(0);
+            tbPassword1.MaxLength = 50;
+            tbPassword1.Name = "tbPassword1";
+            tbPassword1.PasswordChar = '*';
+            tbPassword1.PlaceholderText = "Password";
+            tbPassword1.Size = new Size(400, 50);
+            tbPassword1.TabIndex = 7;
+            tbPassword1.TextAlign = HorizontalAlignment.Center;
             // 
             // tbName
             // 
@@ -149,7 +150,7 @@
         private Panel pnlLayout;
         private Label lblRegister;
         private TextBox tbPassword2;
-        private TextBox tbPassword;
+        private TextBox tbPassword1;
         private TextBox tbName;
         private Button btnLogin;
         private Button btnRegister;

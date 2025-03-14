@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tbLogin = new TextBox();
+            tbName = new TextBox();
             tbPassword = new TextBox();
             btnLogin = new Button();
             btnRegister = new Button();
@@ -37,18 +37,18 @@
             pnlLayout.SuspendLayout();
             SuspendLayout();
             // 
-            // tbLogin
+            // tbName
             // 
-            tbLogin.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbLogin.Font = new Font("Segoe UI", 12F);
-            tbLogin.Location = new Point(50, 100);
-            tbLogin.Margin = new Padding(0);
-            tbLogin.MaxLength = 50;
-            tbLogin.Name = "tbLogin";
-            tbLogin.PlaceholderText = "Name";
-            tbLogin.Size = new Size(400, 50);
-            tbLogin.TabIndex = 0;
-            tbLogin.TextAlign = HorizontalAlignment.Center;
+            tbName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbName.Font = new Font("Segoe UI", 12F);
+            tbName.Location = new Point(50, 100);
+            tbName.Margin = new Padding(0);
+            tbName.MaxLength = 50;
+            tbName.Name = "tbName";
+            tbName.PlaceholderText = "Name";
+            tbName.Size = new Size(400, 50);
+            tbName.TabIndex = 0;
+            tbName.TextAlign = HorizontalAlignment.Center;
             // 
             // tbPassword
             // 
@@ -75,6 +75,7 @@
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnRegister
             // 
@@ -93,7 +94,7 @@
             // 
             pnlLayout.Anchor = AnchorStyles.None;
             pnlLayout.Controls.Add(lblLogin);
-            pnlLayout.Controls.Add(tbLogin);
+            pnlLayout.Controls.Add(tbName);
             pnlLayout.Controls.Add(tbPassword);
             pnlLayout.Controls.Add(btnLogin);
             pnlLayout.Controls.Add(btnRegister);
@@ -129,7 +130,7 @@
 
         #endregion
 
-        private TextBox tbLogin;
+        private TextBox tbName;
         private TextBox tbPassword;
         private Button btnLogin;
         private Button btnRegister;
