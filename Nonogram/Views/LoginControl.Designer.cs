@@ -87,6 +87,7 @@
             btnRegister.TabIndex = 3;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
             // pnlLayout
             // 
@@ -107,6 +108,7 @@
             lblLogin.AutoSize = true;
             lblLogin.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblLogin.Location = new Point(164, 5);
+            lblLogin.Margin = new Padding(0);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(172, 72);
             lblLogin.TabIndex = 4;

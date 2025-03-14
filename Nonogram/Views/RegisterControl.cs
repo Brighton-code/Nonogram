@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Nonogram.Views
 {
-    public partial class RegisterControl: UserControl
+    public partial class RegisterControl : UserControl
     {
         public RegisterControl()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Main.ChangeView("login", FindForm().Controls);
         }
     }
 }
