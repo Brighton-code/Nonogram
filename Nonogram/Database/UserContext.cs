@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -20,15 +21,25 @@ namespace Nonogram.Database
     {
         public List<User> GetUsers(string filePath)
         {
+            Debug.WriteLine("GetUsers");
+
+            if (!File.Exists(filePath))
+                return new List<User>();
+
+            Debug.WriteLine("True");
+
             string json = File.ReadAllText(filePath);
+            if (string.IsNullOrWhiteSpace(json))
+                return new List<User>();
+
             List<User> tmp = JsonSerializer.Deserialize<List<User>>(json);
             return tmp;
         }
 
         public void Save(User user, string filePath)
         {
+            Debug.WriteLine("test");
             List<User> users = GetUsers(filePath);
-
             users.Add(user);
 
             string json = JsonSerializer.Serialize(users);
