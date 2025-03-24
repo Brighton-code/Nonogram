@@ -36,9 +36,7 @@ namespace Nonogram.Views
             }
 
             User user = new User(name, User.HashPassword(password1, password2));
-
-
-            MessageBox.Show(user.Password.Hash);
+                
         }
 
         // Make Input handler class

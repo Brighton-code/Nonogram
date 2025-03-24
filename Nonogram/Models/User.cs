@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nonogram.Models
 {
-    class User
+    public class User
     {
         const int keySize = 64;
         const int iterations = 350000;
