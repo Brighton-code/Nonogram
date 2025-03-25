@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nonogram.Models;
+using Nonogram.Database;
 
 namespace Nonogram.Views
 {
@@ -35,8 +36,23 @@ namespace Nonogram.Views
                 return;
             }
 
+            JsonUserDatabase db = new JsonUserDatabase();
+            List<User> users = db.GetUsers("../../../Database/Users.json");
+
+            User dbUser = users.Where(u => u.Name == name).FirstOrDefault();
+
+            if (dbUser != null)
+            {
+                MessageBox.Show(string.Format("User: {0} already exists", name));
+                return;
+            }
+
             User user = new User(name, User.HashPassword(password1, password2));
-                
+            db.Save(user, "../../../Database/Users.json");
+            MessageBox.Show("Succefully created a account");
+
+            // Change to game/menu screen
+            Main.ChangeView("login", FindForm().Controls);
         }
 
         // Make Input handler class

@@ -51,6 +51,7 @@ namespace Nonogram.Views
                 return;
             }
             //User.VerifyPassword(password);
+            MessageBox.Show("Succefully logged in");
         }
 
         // Make Input handler class
