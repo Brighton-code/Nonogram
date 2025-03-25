@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nonogram.Models;
+using Nonogram.Database;
 
 namespace Nonogram.Views
 {
@@ -34,6 +35,21 @@ namespace Nonogram.Views
                 return;
             }
 
+            JsonUserDatabase db = new JsonUserDatabase();
+            List<User> users = db.GetUsers("../../../Database/Users.json");
+            User user = users.Where(u => u.Name == name).FirstOrDefault();
+
+            if (user == null)
+            {
+                MessageBox.Show(string.Format("Name: {0} does not match any user", name));
+                return;
+            }
+
+            if (!User.VerifyPassword(password, user.Password))
+            {
+                MessageBox.Show("Password does not match user");
+                return;
+            }
             //User.VerifyPassword(password);
         }
 
