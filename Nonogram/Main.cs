@@ -9,7 +9,7 @@ namespace Nonogram
             InitializeComponent();
             InitializeView();
 
-            Main.ChangeView("login", Controls);
+            Main.ChangeView("menu", Controls);
         }
 
         public static void ChangeView(string control, Control.ControlCollection Controls)
@@ -25,9 +25,19 @@ namespace Nonogram
         #region Views code
         private void InitializeView()
         {
+            menu = new MenuControl();
             login = new LoginControl();
             register = new RegisterControl();
             SuspendLayout();
+            ///
+            /// menu
+            /// 
+            menu.Dock = DockStyle.Fill;
+            menu.Location = new Point(0, 0);
+            menu.Margin = new Padding(0);
+            menu.Name = "menu";
+            menu.TabIndex = 0;
+            menu.Visible = false;
             ///
             /// login
             ///
@@ -49,11 +59,13 @@ namespace Nonogram
             ///
             /// Main
             ///
+            Controls.Add(menu);
             Controls.Add(login);
             Controls.Add(register);
             ResumeLayout(false);
         }
 
+        MenuControl menu;
         LoginControl login;
         RegisterControl register;
         #endregion
