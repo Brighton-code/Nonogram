@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nonogram.Models
 {
-    public class Grid
+    public static class Grid
     {
         public static (int[,] grid, int seed) GenerateGrid(int size)
         {
@@ -36,7 +36,7 @@ namespace Nonogram.Models
             return (grid, seed);
         }
 
-        static (int[][] hor, int[][] vert) CountSumsHorizontal(int[,] grid)
+        public static (int[][] hor, int[][] vert) CountSumsHorizontal(int[,] grid)
         {
             int[][] sumsX = new int[grid.GetLength(0)][];
             int[][] sumsY = new int[grid.GetLength(0)][];
