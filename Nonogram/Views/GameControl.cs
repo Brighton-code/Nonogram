@@ -83,13 +83,9 @@ namespace Nonogram.Views
 #endif
 
             for (int row = 0; row < _game.Marked.GetLength(0); row++)
-            {
                 for (int col = 0; col < _game.Marked.GetLength(1); col++)
-                {
                     if (_game.Marked[row, col] == 1)
                         g.FillRectangle(Brushes.Black, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-                }
-            }
 
             //pnlGame.ResumeLayout(false);
         }
