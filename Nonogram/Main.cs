@@ -14,11 +14,14 @@ namespace Nonogram
 
         public static void ChangeView(string control, Control.ControlCollection Controls)
         {
-            for (int i = 0; i < Controls.Count; i++)
+            Control? collectionControl = Controls.Find("pnlBody", false).FirstOrDefault();
+
+            if (collectionControl == null) return;
+
+            for (int i = 0; i < collectionControl.Controls.Count; i++)
             {
-                Controls[i].Visible = false;
-                if (Controls[i].Name == control)
-                    Controls[i].Visible = true;
+                if (collectionControl.Controls[i].Name == control) collectionControl.Controls[i].Visible = true;
+                else collectionControl.Controls[i].Visible = false;
             }
         }
 
@@ -59,9 +62,9 @@ namespace Nonogram
             ///
             /// Main
             ///
-            Controls.Add(menu);
-            Controls.Add(login);
-            Controls.Add(register);
+            pnlBody.Controls.Add(menu);
+            pnlBody.Controls.Add(login);
+            pnlBody.Controls.Add(register);
             ResumeLayout(false);
         }
 
@@ -69,5 +72,10 @@ namespace Nonogram
         LoginControl login;
         RegisterControl register;
         #endregion
+
+        private void NavButton_Menu(object sender, EventArgs e)
+        {
+            Main.ChangeView("menu", Controls);
+        }
     }
 }
