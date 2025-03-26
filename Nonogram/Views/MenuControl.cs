@@ -21,5 +21,10 @@ namespace Nonogram.Views
         {
             Main.ChangeView("login", FindForm().Controls);
         }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            Main.ChangeView("game", FindForm().Controls);
+        }
     }
 }

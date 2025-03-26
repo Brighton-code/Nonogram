@@ -70,6 +70,7 @@ namespace Nonogram
             menu = new MenuControl();
             login = new LoginControl();
             register = new RegisterControl();
+            game = new GameControl();
             SuspendLayout();
             ///
             /// menu
@@ -99,6 +100,15 @@ namespace Nonogram
             register.TabIndex = 0;
             register.Visible = false;
             ///
+            /// Game
+            /// 
+            game.Dock = DockStyle.Fill;
+            game.Location = new Point(0, 0);
+            game.Margin = new Padding(0);
+            game.Name = "game";
+            game.TabIndex = 0;
+            game.Visible = false;
+            ///
             /// Main
             ///
             pnlBody.Controls.Add(menu);
@@ -110,7 +120,7 @@ namespace Nonogram
         MenuControl menu;
         LoginControl login;
         RegisterControl register;
-        private static User? user = null;
+        GameControl game;
         #endregion
 
         private void NavButton_Menu(object sender, EventArgs e)
