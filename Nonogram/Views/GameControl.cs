@@ -15,6 +15,8 @@ namespace Nonogram.Views
     public partial class GameControl : UserControl
     {
         private Game _game;
+        FontFamily fontFamily = new("Arial");
+        Font font;
         public GameControl()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace Nonogram.Views
             int col = (int)Math.Floor(((float)e.X - _game.GridStart.X) / _game.CellSize);
             int row = (int)Math.Floor(((float)e.Y - _game.GridStart.Y) / _game.CellSize);
 
-            MessageBox.Show($"{col}, {row}");
+            //MessageBox.Show($"{col}, {row}");
 
 
             if (_game.Marked[row, col] == 0) _game.Marked[row, col] = 1;
@@ -62,6 +64,8 @@ namespace Nonogram.Views
             _game.GridStart = new Point(_game.CellSize * _game.RowHintMax, _game.CellSize * _game.ColHintMax);
             _game.GridArea = _game.CellSize * _game.GridSize;
 
+            font = new Font(fontFamily, _game.CellSize, FontStyle.Regular, GraphicsUnit.Pixel);
+
             Rectangle area = new Rectangle(_game.GridStart.X, _game.GridStart.Y, _game.GridArea, _game.GridArea);
 
             g.FillRectangle(Brushes.White, area);
@@ -82,12 +86,22 @@ namespace Nonogram.Views
             // End Debug
 #endif
 
+            // Draw Marked cells
             for (int row = 0; row < _game.Marked.GetLength(0); row++)
                 for (int col = 0; col < _game.Marked.GetLength(1); col++)
                     if (_game.Marked[row, col] == 1)
                         g.FillRectangle(Brushes.Black, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
 
-            //pnlGame.ResumeLayout(false);
+            // Draw Horizontal Hints
+            for (int i = 0; i < _game.RowHints.Length; i++)
+                for (int j = 0; j <  _game.RowHints[i].Length; j++)
+                    g.DrawString(_game.RowHints[i][j].ToString(), font, Brushes.Black, new Rectangle((_game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length)) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i), _game.CellSize, _game.CellSize));
+
+            // Draw Vertical Hints
+            for (int i = 0; i < _game.ColHints.Length; i++)
+                for (int j = 0; j < _game.ColHints[i].Length; j++)
+                    g.DrawString(_game.ColHints[i][j].ToString(), font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
+
         }
         public void ChangeGrid(int size)
         {
