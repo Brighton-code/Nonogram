@@ -60,7 +60,9 @@ namespace Nonogram.Views
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
             if (_game == null) return;
+            _game.ValidateGame();
 
+            if (_game.Complete) MessageBox.Show("Game is complete");
             //pnlGame.SuspendLayout();
 
             Graphics g = e.Graphics;
