@@ -128,9 +128,7 @@ namespace Nonogram
                 ChangeNavUser(Controls);
             }
             else if (btn.Tag == "login")
-            {
                 Main.ChangeView("login", Controls);
-            }
         }
     }
 }
