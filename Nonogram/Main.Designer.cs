@@ -48,6 +48,7 @@
             // 
             // btnUser
             // 
+            btnUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnUser.Font = new Font("Segoe UI", 10.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUser.Location = new Point(604, 25);
             btnUser.Name = "btnUser";
