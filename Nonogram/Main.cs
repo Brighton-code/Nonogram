@@ -141,5 +141,10 @@ namespace Nonogram
             else if (btn.Tag == "login")
                 Main.ChangeView("login", Controls);
         }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            Update();
+        }
     }
 }
