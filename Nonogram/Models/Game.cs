@@ -56,6 +56,8 @@ namespace Nonogram.Models
 
         public int CellSize;
         public Padding CellPadding = new Padding(4);
+        public Point GridStart;
+        public int GridArea;
 
         public Game(int size)
         {
