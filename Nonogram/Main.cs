@@ -114,6 +114,7 @@ namespace Nonogram
             pnlBody.Controls.Add(menu);
             pnlBody.Controls.Add(login);
             pnlBody.Controls.Add(register);
+            pnlBody.Controls.Add(game);
             ResumeLayout(false);
         }
 
