@@ -52,6 +52,8 @@ namespace Nonogram.Views
             }
             //User.VerifyPassword(password);
             MessageBox.Show("Succefully logged in");
+            Main.User = user;
+            Main.ChangeNavUser(FindForm().Controls);
             Main.ChangeView("menu", FindForm().Controls);
         }
 

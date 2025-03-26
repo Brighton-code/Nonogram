@@ -1,14 +1,17 @@
 using Nonogram.Views;
+using Nonogram.Models;
 
 namespace Nonogram
 {
     public partial class Main : Form
     {
+        public static User? User = null;
         public Main()
         {
             InitializeComponent();
             InitializeView();
 
+            Main.ChangeNavUser(Controls);
             Main.ChangeView("menu", Controls);
         }
 
@@ -22,6 +25,42 @@ namespace Nonogram
             {
                 if (collectionControl.Controls[i].Name == control) collectionControl.Controls[i].Visible = true;
                 else collectionControl.Controls[i].Visible = false;
+            }
+        }
+
+        public static void ChangeNavUser(Control.ControlCollection Controls)
+        {
+            Control? collectionControl = Controls.Find("pnlNav", false).FirstOrDefault();
+            if (collectionControl == null) return;
+
+            if (Main.User == null)
+            {
+                for (int i = 0; i < collectionControl.Controls.Count; i++)
+                {
+                    Control control = collectionControl.Controls[i];
+                    if (control.Name == "lblUser") control.Visible = false;
+                    else if (control.Name == "btnUser")
+                    {
+                        control.Text = "login";
+                        control.Tag = "login";
+                    }
+                }
+                return;
+            }
+
+            for (int i = 0; i < collectionControl.Controls.Count; i++)
+            {
+                Control control = collectionControl.Controls[i];
+                if (control.Name == "lblUser")
+                {
+                    control.Visible = true;
+                    control.Text = Main.User.Name;
+                }
+                else if (control.Name == "btnUser")
+                {
+                    control.Text = "logout";
+                    control.Tag = "logout";
+                }
             }
         }
 
@@ -71,11 +110,27 @@ namespace Nonogram
         MenuControl menu;
         LoginControl login;
         RegisterControl register;
+        private static User? user = null;
         #endregion
 
         private void NavButton_Menu(object sender, EventArgs e)
         {
             Main.ChangeView("menu", Controls);
+        }
+
+        private void NavButton_User(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (btn.Tag == "logout")
+            {
+                Main.User = null;
+                ChangeNavUser(Controls);
+            }
+            else if (btn.Tag == "login")
+            {
+                Main.ChangeView("login", Controls);
+            }
         }
     }
 }
