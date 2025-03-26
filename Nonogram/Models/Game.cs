@@ -18,12 +18,12 @@ namespace Nonogram.Models
                 (Solution, Seed) = Grid.GenerateGrid(value);
                 (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
                 _gridSize = value;
-                Marked = new int[_gridSize, _gridSize];
+                Marked = new Marked[_gridSize, _gridSize];
             }
         }
 
         public int[,] Solution { get; private set; }
-        public int[,] Marked { get; set; }
+        public Marked[,] Marked { get; set; }
         public int Seed { get; private set; }
 
         private int[][] _rowHints;
@@ -63,5 +63,12 @@ namespace Nonogram.Models
         {
             GridSize = size;
         }
+    }
+
+    public enum Marked
+    {
+        None,
+        Done,
+        Wrong
     }
 }
