@@ -77,13 +77,13 @@
             // inGridSize
             // 
             inGridSize.Anchor = AnchorStyles.None;
-            inGridSize.Font = new Font("Segoe UI Semibold", 10.125F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            inGridSize.Location = new Point(47, 62);
+            inGridSize.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            inGridSize.Location = new Point(40, 58);
             inGridSize.Margin = new Padding(0);
             inGridSize.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             inGridSize.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             inGridSize.Name = "inGridSize";
-            inGridSize.Size = new Size(55, 25);
+            inGridSize.Size = new Size(70, 33);
             inGridSize.TabIndex = 0;
             inGridSize.TextAlign = HorizontalAlignment.Center;
             inGridSize.Value = new decimal(new int[] { 5, 0, 0, 0 });
@@ -92,11 +92,11 @@
             // btnSubmitSize
             // 
             btnSubmitSize.Anchor = AnchorStyles.None;
-            btnSubmitSize.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSubmitSize.Location = new Point(135, 62);
+            btnSubmitSize.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSubmitSize.Location = new Point(135, 58);
             btnSubmitSize.Margin = new Padding(0);
             btnSubmitSize.Name = "btnSubmitSize";
-            btnSubmitSize.Size = new Size(79, 25);
+            btnSubmitSize.Size = new Size(80, 33);
             btnSubmitSize.TabIndex = 1;
             btnSubmitSize.Text = "Change";
             btnSubmitSize.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             lblChange.AutoSize = true;
             pnlSizeChange.SetColumnSpan(lblChange, 2);
             lblChange.Dock = DockStyle.Fill;
-            lblChange.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblChange.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblChange.Location = new Point(27, 0);
             lblChange.Margin = new Padding(2, 0, 2, 0);
             lblChange.Name = "lblChange";
