@@ -51,20 +51,22 @@
             // 
             // btnScoreboard
             // 
-            btnScoreboard.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnScoreboard.Location = new Point(100, 392);
+            btnScoreboard.Font = new Font("Segoe UI Semibold", 36F, FontStyle.Bold);
+            btnScoreboard.Location = new Point(100, 373);
+            btnScoreboard.Margin = new Padding(2, 1, 2, 1);
             btnScoreboard.Name = "btnScoreboard";
-            btnScoreboard.Size = new Size(300, 100);
+            btnScoreboard.Size = new Size(300, 90);
             btnScoreboard.TabIndex = 3;
             btnScoreboard.Text = "Scoreboard";
             btnScoreboard.UseVisualStyleBackColor = true;
             // 
             // btnUser
             // 
-            btnUser.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUser.Location = new Point(100, 272);
+            btnUser.Font = new Font("Segoe UI Semibold", 36F, FontStyle.Bold);
+            btnUser.Location = new Point(100, 263);
+            btnUser.Margin = new Padding(2, 1, 2, 1);
             btnUser.Name = "btnUser";
-            btnUser.Size = new Size(300, 100);
+            btnUser.Size = new Size(300, 90);
             btnUser.TabIndex = 2;
             btnUser.Text = "Login";
             btnUser.UseVisualStyleBackColor = true;
@@ -72,10 +74,11 @@
             // 
             // btnPlay
             // 
-            btnPlay.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPlay.Location = new Point(100, 152);
+            btnPlay.Font = new Font("Segoe UI Semibold", 36F, FontStyle.Bold);
+            btnPlay.Location = new Point(100, 153);
+            btnPlay.Margin = new Padding(2, 1, 2, 1);
             btnPlay.Name = "btnPlay";
-            btnPlay.Size = new Size(300, 100);
+            btnPlay.Size = new Size(300, 90);
             btnPlay.TabIndex = 1;
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = true;
@@ -84,17 +87,17 @@
             // lblMenu
             // 
             lblMenu.AutoSize = true;
-            lblMenu.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMenu.Location = new Point(93, 5);
+            lblMenu.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
+            lblMenu.Location = new Point(136, 50);
             lblMenu.Margin = new Padding(0);
             lblMenu.Name = "lblMenu";
-            lblMenu.Size = new Size(314, 128);
+            lblMenu.Size = new Size(229, 93);
             lblMenu.TabIndex = 0;
             lblMenu.Text = "Menu";
             // 
             // MenuControl
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pnlLayout);
             Margin = new Padding(0);
