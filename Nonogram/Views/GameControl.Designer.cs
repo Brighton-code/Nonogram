@@ -34,6 +34,7 @@
             btnSubmitSize = new Button();
             lblChange = new Label();
             pnlGame = new Panel();
+            btnSolution = new Button();
             pnlGameBtns.SuspendLayout();
             pnlSizeChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).BeginInit();
@@ -45,6 +46,7 @@
             pnlGameBtns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlGameBtns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlGameBtns.Controls.Add(pnlSizeChange, 0, 0);
+            pnlGameBtns.Controls.Add(btnSolution, 1, 0);
             pnlGameBtns.Dock = DockStyle.Bottom;
             pnlGameBtns.Location = new Point(0, 400);
             pnlGameBtns.Margin = new Padding(0);
@@ -125,6 +127,18 @@
             pnlGame.Size = new Size(500, 400);
             pnlGame.TabIndex = 1;
             // 
+            // btnSolution
+            // 
+            btnSolution.Anchor = AnchorStyles.None;
+            btnSolution.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSolution.Location = new Point(316, 26);
+            btnSolution.Name = "btnSolution";
+            btnSolution.Size = new Size(118, 47);
+            btnSolution.TabIndex = 2;
+            btnSolution.Text = "Solution";
+            btnSolution.UseVisualStyleBackColor = true;
+            btnSolution.Click += btnSolution_Click;
+            // 
             // GameControl
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -149,5 +163,6 @@
         private TableLayoutPanel pnlSizeChange;
         private Button btnSubmitSize;
         private Label lblChange;
+        private Button btnSolution;
     }
 }

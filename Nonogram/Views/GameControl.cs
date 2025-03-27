@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -17,6 +18,7 @@ namespace Nonogram.Views
         private Game _game;
         FontFamily fontFamily = new("Arial");
         Font font;
+        bool showSolution = false;
         public GameControl()
         {
             InitializeComponent();
@@ -34,15 +36,13 @@ namespace Nonogram.Views
 
         private void PnlGame_MouseClick(object? sender, MouseEventArgs e)
         {
-            if (e.X < _game.GridStart.X || e.X - _game.GridStart.X > _game.GridStart.X + (_game.CellSize * _game.GridSize))
+            if (e.X < _game.GridStart.X || e.X > _game.GridStart.X + (_game.CellSize * _game.GridSize) - 1)
                 return;
-            if (e.Y < _game.GridStart.Y || e.Y - _game.GridStart.Y > _game.GridStart.Y + (_game.CellSize * _game.GridSize))
+            if (e.Y < _game.GridStart.Y || e.Y > _game.GridStart.Y + (_game.CellSize * _game.GridSize) - 1)
                 return;
 
             int col = (int)Math.Floor(((float)e.X - _game.GridStart.X) / _game.CellSize);
             int row = (int)Math.Floor(((float)e.Y - _game.GridStart.Y) / _game.CellSize);
-
-            //MessageBox.Show($"{col}, {row}");
 
             switch (e.Button)
             {
@@ -63,7 +63,6 @@ namespace Nonogram.Views
             _game.ValidateGame();
 
             if (_game.Complete) MessageBox.Show("Game is complete");
-            //pnlGame.SuspendLayout();
 
             Graphics g = e.Graphics;
 
@@ -76,7 +75,7 @@ namespace Nonogram.Views
             Rectangle area = new Rectangle(_game.GridStart.X, _game.GridStart.Y, _game.GridArea, _game.GridArea);
 
             g.FillRectangle(Brushes.White, area);
-            
+
             for (int i = 0; i < _game.GridSize; i++)
             {
                 g.DrawLine(Pens.Black, _game.GridStart.X, _game.GridStart.Y + i * _game.CellSize, _game.GridStart.X + _game.GridArea, _game.GridStart.Y + i * _game.CellSize);
@@ -86,10 +85,14 @@ namespace Nonogram.Views
 
 #if DEBUG
             // Debug
-            //for (int row = 0; row < _game.Solution.GetLength(0); row++)
-            //    for (int col = 0; col < _game.Solution.GetLength(1); col++)
-            //        if (_game.Solution[row, col] == 1)
-            //            g.FillRectangle(Brushes.Blue, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+            if (showSolution)
+            {
+                for (int row = 0; row < _game.Solution.GetLength(0); row++)
+                    for (int col = 0; col < _game.Solution.GetLength(1); col++)
+                        if (_game.Solution[row, col] == 1)
+                            g.FillRectangle(Brushes.Blue, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+            }
+
             // End Debug
 #endif
 
@@ -127,6 +130,12 @@ namespace Nonogram.Views
         {
             ChangeGrid((int)inGridSize.Value);
             pnlGame.Refresh();
+        }
+
+        private void btnSolution_Click(object sender, EventArgs e)
+        {
+            showSolution = !showSolution;
+            pnlGame.Invalidate();
         }
     }
 }
