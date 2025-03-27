@@ -10,19 +10,7 @@ namespace Nonogram.Models
 {
     public class Game
     {
-        private int _gridSize;
-        public int GridSize 
-        {
-            get => _gridSize;
-            set
-            {
-                (Solution, Seed) = Grid.GenerateGrid(value);
-                (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
-                _gridSize = value;
-                Marked = new Marked[_gridSize, _gridSize];
-            }
-        }
-
+        public int GridSize { get; private set; }
         public int[,] Solution { get; private set; }
         public Marked[,] Marked { get; set; }
         public int Seed { get; private set; }
@@ -64,11 +52,22 @@ namespace Nonogram.Models
         public Game(int size)
         {
             GridSize = size;
+            (Solution, Seed) = Grid.GenerateGrid(GridSize);
+            (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
+            Marked = new Marked[GridSize, GridSize];
+        }
+
+        public Game(int size, int seed)
+        {
+            GridSize = size;
+            (Solution, Seed) = Grid.GenerateGrid(GridSize, seed);
+            (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
+            Marked = new Marked[GridSize, GridSize];
         }
 
         public void ValidateGame()
         {
-            int[,] tmp = new int[_gridSize, _gridSize];
+            int[,] tmp = new int[GridSize, GridSize];
             for (int row = 0; row < Marked.GetLength(0); row++)
                 for (int col = 0; col < Marked.GetLength(1); col++)
                     if (Marked[row, col] == Models.Marked.Done)
@@ -78,6 +77,7 @@ namespace Nonogram.Models
 
             if (AreJaggedArraysEqual(_rowHints, hor) && AreJaggedArraysEqual(_colHints, ver))
                 Complete = true;
+            else Complete = false;
         }
 
         static bool AreJaggedArraysEqual(int[][] array1, int[][] array2)
