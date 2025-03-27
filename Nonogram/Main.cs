@@ -1,5 +1,6 @@
 using Nonogram.Views;
 using Nonogram.Models;
+using System.Text.RegularExpressions;
 
 namespace Nonogram
 {
@@ -13,6 +14,7 @@ namespace Nonogram
 
             Main.ChangeNavUser(Controls);
             Main.ChangeView("menu", Controls);
+            //MessageBox.Show($"{Width}, {Height}");
         }
 
         public static void ChangeView(string control, Control.ControlCollection Controls)
@@ -51,6 +53,7 @@ namespace Nonogram
             for (int i = 0; i < collectionControl.Controls.Count; i++)
             {
                 Control control = collectionControl.Controls[i];
+
                 if (control.Name == "lblUser")
                 {
                     control.Visible = true;
@@ -133,13 +136,16 @@ namespace Nonogram
         {
             Button btn = (Button)sender;
 
-            if (btn.Tag == "logout")
+            switch (btn.Tag)
             {
-                Main.User = null;
-                ChangeNavUser(Controls);
+                case "logout":
+                    Main.User = null;
+                    ChangeNavUser(Controls);
+                    break;
+                case "login":
+                    Main.ChangeView("login", Controls);
+                    break;
             }
-            else if (btn.Tag == "login")
-                Main.ChangeView("login", Controls);
         }
 
         private void Main_Resize(object sender, EventArgs e)

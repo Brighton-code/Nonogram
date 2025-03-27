@@ -39,11 +39,11 @@
             // btnUser
             // 
             btnUser.Anchor = AnchorStyles.None;
-            btnUser.Font = new Font("Segoe UI", 10.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnUser.Location = new Point(599, 25);
+            btnUser.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUser.Location = new Point(689, 30);
             btnUser.Margin = new Padding(0);
             btnUser.Name = "btnUser";
-            btnUser.Size = new Size(150, 50);
+            btnUser.Size = new Size(81, 40);
             btnUser.TabIndex = 1;
             btnUser.Tag = "login";
             btnUser.Text = "User";
@@ -53,11 +53,11 @@
             // btnMenu
             // 
             btnMenu.Anchor = AnchorStyles.None;
-            btnMenu.Font = new Font("Segoe UI", 10.875F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMenu.Location = new Point(25, 25);
+            btnMenu.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMenu.Location = new Point(13, 30);
             btnMenu.Margin = new Padding(0);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(150, 50);
+            btnMenu.Size = new Size(81, 40);
             btnMenu.TabIndex = 0;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = true;
@@ -69,15 +69,15 @@
             pnlBody.Location = new Point(0, 100);
             pnlBody.Margin = new Padding(0);
             pnlBody.Name = "pnlBody";
-            pnlBody.Size = new Size(774, 629);
+            pnlBody.Size = new Size(784, 661);
             pnlBody.TabIndex = 1;
             // 
             // pnlNav
             // 
             pnlNav.ColumnCount = 3;
-            pnlNav.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            pnlNav.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 108F));
             pnlNav.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            pnlNav.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            pnlNav.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 108F));
             pnlNav.Controls.Add(btnMenu, 0, 0);
             pnlNav.Controls.Add(btnUser, 2, 0);
             pnlNav.Controls.Add(lblUser, 1, 0);
@@ -87,7 +87,7 @@
             pnlNav.Name = "pnlNav";
             pnlNav.RowCount = 1;
             pnlNav.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            pnlNav.Size = new Size(774, 100);
+            pnlNav.Size = new Size(784, 100);
             pnlNav.TabIndex = 2;
             // 
             // lblUser
@@ -95,20 +95,20 @@
             lblUser.Anchor = AnchorStyles.Right;
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Segoe UI Semibold", 13.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(454, 25);
+            lblUser.Location = new Point(614, 37);
             lblUser.Margin = new Padding(0);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(120, 50);
+            lblUser.Size = new Size(62, 25);
             lblUser.TabIndex = 2;
             lblUser.Text = "label1";
             // 
             // Main
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(774, 729);
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(784, 761);
             Controls.Add(pnlBody);
             Controls.Add(pnlNav);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "Main";
             Text = "Nonogram Game";
             pnlNav.ResumeLayout(false);
