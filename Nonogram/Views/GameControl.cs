@@ -18,6 +18,7 @@ namespace Nonogram.Views
         private Game _game;
         FontFamily fontFamily = new("Arial");
         Font font;
+        Font fontHigh;
         bool showSolution = false;
         public GameControl()
         {
@@ -71,7 +72,9 @@ namespace Nonogram.Views
             _game.GridStart = new Point(_game.CellSize * _game.RowHintMax, _game.CellSize * _game.ColHintMax);
             _game.GridArea = _game.CellSize * _game.GridSize;
 
-            font = new Font(fontFamily, _game.CellSize, FontStyle.Regular, GraphicsUnit.Pixel);
+            // Make scoped?
+            font = new Font(fontFamily, _game.CellSize, FontStyle.Bold, GraphicsUnit.Pixel);
+            fontHigh = new Font(fontFamily, (float)(_game.CellSize - (_game.CellSize / 3.5)), FontStyle.Bold, GraphicsUnit.Pixel);
 
             Rectangle area = new Rectangle(_game.GridStart.X, _game.GridStart.Y, _game.GridArea, _game.GridArea);
 
@@ -108,12 +111,18 @@ namespace Nonogram.Views
             // Draw Horizontal Hints
             for (int i = 0; i < _game.RowHints.Length; i++)
                 for (int j = 0; j < _game.RowHints[i].Length; j++)
-                    g.DrawString(_game.RowHints[i][j].ToString(), font, Brushes.Black, new Rectangle((_game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length)) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i), _game.CellSize, _game.CellSize));
+                    if (_game.RowHints[i][j] < 10)
+                        g.DrawString(_game.RowHints[i][j].ToString(), font, Brushes.Black, new Rectangle((_game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length)) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i), _game.CellSize, _game.CellSize));
+                    else
+                        g.DrawString(_game.RowHints[i][j].ToString(), fontHigh, Brushes.Black, _game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i) + (int)(_game.CellSize / 5));
 
             // Draw Vertical Hints
             for (int i = 0; i < _game.ColHints.Length; i++)
                 for (int j = 0; j < _game.ColHints[i].Length; j++)
-                    g.DrawString(_game.ColHints[i][j].ToString(), font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
+                    if (_game.ColHints[i][j] < 10)
+                        g.DrawString(_game.ColHints[i][j].ToString(), font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
+                    else
+                        g.DrawString(_game.ColHints[i][j].ToString(), fontHigh, Brushes.Black, _game.GridStart.X + (_game.CellSize * i), _game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length) + (_game.CellSize * j) + (int)(_game.CellSize / 5));
 
             sw.Stop();
             lblStopwatch.Text = sw.Elapsed.ToString();
@@ -121,6 +130,7 @@ namespace Nonogram.Views
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
+            lblSeed.Text = _game.Seed.ToString();
             //MessageBox.Show(size.ToString());
         }
         private void inGridSize_KeyPress(object sender, KeyPressEventArgs e)

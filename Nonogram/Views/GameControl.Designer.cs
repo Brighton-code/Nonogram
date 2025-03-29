@@ -33,10 +33,11 @@
             inGridSize = new NumericUpDown();
             btnSubmitSize = new Button();
             lblChange = new Label();
-            btnSolution = new Button();
-            pnlGame = new Panel();
             pnlData = new TableLayoutPanel();
+            btnSolution = new Button();
             lblStopwatch = new Label();
+            pnlGame = new Panel();
+            lblSeed = new Label();
             pnlGameBtns.SuspendLayout();
             pnlSizeChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).BeginInit();
@@ -121,17 +122,46 @@
             lblChange.Text = "Change Size";
             lblChange.TextAlign = ContentAlignment.BottomCenter;
             // 
+            // pnlData
+            // 
+            pnlData.ColumnCount = 2;
+            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlData.Controls.Add(btnSolution, 0, 0);
+            pnlData.Controls.Add(lblStopwatch, 0, 1);
+            pnlData.Controls.Add(lblSeed, 1, 0);
+            pnlData.Dock = DockStyle.Fill;
+            pnlData.Location = new Point(253, 3);
+            pnlData.Name = "pnlData";
+            pnlData.RowCount = 2;
+            pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlData.Size = new Size(244, 94);
+            pnlData.TabIndex = 2;
+            // 
             // btnSolution
             // 
             btnSolution.Anchor = AnchorStyles.None;
             btnSolution.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSolution.Location = new Point(3, 23);
+            btnSolution.Location = new Point(3, 3);
             btnSolution.Name = "btnSolution";
-            btnSolution.Size = new Size(116, 47);
+            btnSolution.Size = new Size(116, 41);
             btnSolution.TabIndex = 2;
             btnSolution.Text = "Solution";
             btnSolution.UseVisualStyleBackColor = true;
             btnSolution.Click += btnSolution_Click;
+            // 
+            // lblStopwatch
+            // 
+            lblStopwatch.Anchor = AnchorStyles.None;
+            lblStopwatch.AutoSize = true;
+            pnlData.SetColumnSpan(lblStopwatch, 2);
+            lblStopwatch.Font = new Font("Segoe UI", 14F);
+            lblStopwatch.Location = new Point(73, 58);
+            lblStopwatch.Name = "lblStopwatch";
+            lblStopwatch.Size = new Size(98, 25);
+            lblStopwatch.TabIndex = 3;
+            lblStopwatch.Text = "Draw time";
             // 
             // pnlGame
             // 
@@ -142,31 +172,16 @@
             pnlGame.Size = new Size(500, 400);
             pnlGame.TabIndex = 1;
             // 
-            // pnlData
+            // lblSeed
             // 
-            pnlData.ColumnCount = 2;
-            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            pnlData.Controls.Add(btnSolution, 0, 0);
-            pnlData.Controls.Add(lblStopwatch, 1, 0);
-            pnlData.Dock = DockStyle.Fill;
-            pnlData.Location = new Point(253, 3);
-            pnlData.Name = "pnlData";
-            pnlData.RowCount = 1;
-            pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            pnlData.Size = new Size(244, 94);
-            pnlData.TabIndex = 2;
-            // 
-            // lblStopwatch
-            // 
-            lblStopwatch.Anchor = AnchorStyles.None;
-            lblStopwatch.AutoSize = true;
-            lblStopwatch.Font = new Font("Segoe UI", 12F);
-            lblStopwatch.Location = new Point(157, 36);
-            lblStopwatch.Name = "lblStopwatch";
-            lblStopwatch.Size = new Size(52, 21);
-            lblStopwatch.TabIndex = 3;
-            lblStopwatch.Text = "label1";
+            lblSeed.Anchor = AnchorStyles.None;
+            lblSeed.AutoSize = true;
+            lblSeed.Font = new Font("Segoe UI", 12F);
+            lblSeed.Location = new Point(161, 13);
+            lblSeed.Name = "lblSeed";
+            lblSeed.Size = new Size(44, 21);
+            lblSeed.TabIndex = 4;
+            lblSeed.Text = "Seed";
             // 
             // GameControl
             // 
@@ -197,5 +212,6 @@
         private Button btnSolution;
         private TableLayoutPanel pnlData;
         private Label lblStopwatch;
+        private Label lblSeed;
     }
 }
