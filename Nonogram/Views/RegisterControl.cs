@@ -47,6 +47,8 @@ namespace Nonogram.Views
                 return;
             }
 
+            // Check if password1 is same as password2
+
             User user = new User(name, User.HashPassword(password1, password2));
             db.Save(user, "../../../Database/Users.json");
             MessageBox.Show("Succefully created a account");

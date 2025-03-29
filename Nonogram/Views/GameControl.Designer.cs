@@ -33,11 +33,14 @@
             inGridSize = new NumericUpDown();
             btnSubmitSize = new Button();
             lblChange = new Label();
-            pnlGame = new Panel();
             btnSolution = new Button();
+            pnlGame = new Panel();
+            pnlData = new TableLayoutPanel();
+            lblStopwatch = new Label();
             pnlGameBtns.SuspendLayout();
             pnlSizeChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).BeginInit();
+            pnlData.SuspendLayout();
             SuspendLayout();
             // 
             // pnlGameBtns
@@ -46,7 +49,7 @@
             pnlGameBtns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlGameBtns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlGameBtns.Controls.Add(pnlSizeChange, 0, 0);
-            pnlGameBtns.Controls.Add(btnSolution, 1, 0);
+            pnlGameBtns.Controls.Add(pnlData, 1, 0);
             pnlGameBtns.Dock = DockStyle.Bottom;
             pnlGameBtns.Location = new Point(0, 400);
             pnlGameBtns.Margin = new Padding(0);
@@ -118,6 +121,18 @@
             lblChange.Text = "Change Size";
             lblChange.TextAlign = ContentAlignment.BottomCenter;
             // 
+            // btnSolution
+            // 
+            btnSolution.Anchor = AnchorStyles.None;
+            btnSolution.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSolution.Location = new Point(3, 23);
+            btnSolution.Name = "btnSolution";
+            btnSolution.Size = new Size(116, 47);
+            btnSolution.TabIndex = 2;
+            btnSolution.Text = "Solution";
+            btnSolution.UseVisualStyleBackColor = true;
+            btnSolution.Click += btnSolution_Click;
+            // 
             // pnlGame
             // 
             pnlGame.Dock = DockStyle.Fill;
@@ -127,17 +142,31 @@
             pnlGame.Size = new Size(500, 400);
             pnlGame.TabIndex = 1;
             // 
-            // btnSolution
+            // pnlData
             // 
-            btnSolution.Anchor = AnchorStyles.None;
-            btnSolution.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSolution.Location = new Point(316, 26);
-            btnSolution.Name = "btnSolution";
-            btnSolution.Size = new Size(118, 47);
-            btnSolution.TabIndex = 2;
-            btnSolution.Text = "Solution";
-            btnSolution.UseVisualStyleBackColor = true;
-            btnSolution.Click += btnSolution_Click;
+            pnlData.ColumnCount = 2;
+            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlData.Controls.Add(btnSolution, 0, 0);
+            pnlData.Controls.Add(lblStopwatch, 1, 0);
+            pnlData.Dock = DockStyle.Fill;
+            pnlData.Location = new Point(253, 3);
+            pnlData.Name = "pnlData";
+            pnlData.RowCount = 1;
+            pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlData.Size = new Size(244, 94);
+            pnlData.TabIndex = 2;
+            // 
+            // lblStopwatch
+            // 
+            lblStopwatch.Anchor = AnchorStyles.None;
+            lblStopwatch.AutoSize = true;
+            lblStopwatch.Font = new Font("Segoe UI", 12F);
+            lblStopwatch.Location = new Point(157, 36);
+            lblStopwatch.Name = "lblStopwatch";
+            lblStopwatch.Size = new Size(52, 21);
+            lblStopwatch.TabIndex = 3;
+            lblStopwatch.Text = "label1";
             // 
             // GameControl
             // 
@@ -152,6 +181,8 @@
             pnlSizeChange.ResumeLayout(false);
             pnlSizeChange.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).EndInit();
+            pnlData.ResumeLayout(false);
+            pnlData.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -164,5 +195,7 @@
         private Button btnSubmitSize;
         private Label lblChange;
         private Button btnSolution;
+        private TableLayoutPanel pnlData;
+        private Label lblStopwatch;
     }
 }

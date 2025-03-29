@@ -59,6 +59,7 @@ namespace Nonogram.Views
 
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
+            Stopwatch sw = Stopwatch.StartNew();
             if (_game == null) return;
             _game.ValidateGame();
 
@@ -114,6 +115,8 @@ namespace Nonogram.Views
                 for (int j = 0; j < _game.ColHints[i].Length; j++)
                     g.DrawString(_game.ColHints[i][j].ToString(), font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
 
+            sw.Stop();
+            lblStopwatch.Text = sw.Elapsed.ToString();
         }
         public void ChangeGrid(int size)
         {
