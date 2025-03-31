@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,14 @@ namespace Nonogram.Views
         {
             InitializeComponent();
 
-            DoubleBuffered = true;
             pnlGame.Paint += PnlGame_Paint;
             pnlGame.MouseClick += PnlGame_MouseClick;
             pnlGame.Resize += PnlGame_Resize;
+
+            // https://stackoverflow.com/questions/8046560/how-to-stop-flickering-c-sharp-winforms
+            typeof(Panel).InvokeMember("DoubleBuffered",
+                BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                null, pnlGame, [true]);
         }
 
         private void PnlGame_Resize(object? sender, EventArgs e)
@@ -56,15 +61,15 @@ namespace Nonogram.Views
             }
 
             pnlGame.Invalidate();
+
+            _game.ValidateGame();
+            if (_game.Complete) MessageBox.Show("Game is complete");
         }
 
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
             Stopwatch sw = Stopwatch.StartNew();
             if (_game == null) return;
-            _game.ValidateGame();
-
-            if (_game.Complete) MessageBox.Show("Game is complete");
 
             Graphics g = e.Graphics;
 

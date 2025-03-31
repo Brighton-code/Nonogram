@@ -36,8 +36,8 @@
             pnlData = new TableLayoutPanel();
             btnSolution = new Button();
             lblStopwatch = new Label();
-            pnlGame = new Panel();
             lblSeed = new Label();
+            pnlGame = new Panel();
             pnlGameBtns.SuspendLayout();
             pnlSizeChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).BeginInit();
@@ -163,15 +163,6 @@
             lblStopwatch.TabIndex = 3;
             lblStopwatch.Text = "Draw time";
             // 
-            // pnlGame
-            // 
-            pnlGame.Dock = DockStyle.Fill;
-            pnlGame.Location = new Point(0, 0);
-            pnlGame.Margin = new Padding(0);
-            pnlGame.Name = "pnlGame";
-            pnlGame.Size = new Size(500, 400);
-            pnlGame.TabIndex = 1;
-            // 
             // lblSeed
             // 
             lblSeed.Anchor = AnchorStyles.None;
@@ -182,6 +173,15 @@
             lblSeed.Size = new Size(44, 21);
             lblSeed.TabIndex = 4;
             lblSeed.Text = "Seed";
+            // 
+            // pnlGame
+            // 
+            pnlGame.Dock = DockStyle.Fill;
+            pnlGame.Location = new Point(0, 0);
+            pnlGame.Margin = new Padding(0);
+            pnlGame.Name = "pnlGame";
+            pnlGame.Size = new Size(500, 400);
+            pnlGame.TabIndex = 1;
             // 
             // GameControl
             // 

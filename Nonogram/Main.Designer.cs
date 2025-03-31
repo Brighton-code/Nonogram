@@ -108,6 +108,7 @@
             ClientSize = new Size(784, 761);
             Controls.Add(pnlBody);
             Controls.Add(pnlNav);
+            DoubleBuffered = true;
             Margin = new Padding(2, 1, 2, 1);
             Name = "Main";
             Text = "Nonogram Game";
