@@ -73,8 +73,8 @@ namespace Nonogram.Views
             _game.GridArea = _game.CellSize * _game.GridSize;
 
             // Make scoped?
-            font = new Font(fontFamily, _game.CellSize, FontStyle.Bold, GraphicsUnit.Pixel);
-            fontHigh = new Font(fontFamily, (float)(_game.CellSize - (_game.CellSize / 3.5)), FontStyle.Bold, GraphicsUnit.Pixel);
+            font = new Font(fontFamily, Math.Max(_game.CellSize, 1), FontStyle.Bold, GraphicsUnit.Pixel);
+            fontHigh = new Font(fontFamily, Math.Max((float)(_game.CellSize - (_game.CellSize / 3.5)), 1), FontStyle.Bold, GraphicsUnit.Pixel);
 
             Rectangle area = new Rectangle(_game.GridStart.X, _game.GridStart.Y, _game.GridArea, _game.GridArea);
 
