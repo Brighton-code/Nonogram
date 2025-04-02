@@ -152,27 +152,6 @@ namespace Nonogram
         GameControl game;
         #endregion
 
-        //private void NavButton_Menu(object sender, EventArgs e)
-        //{
-        //    Main.ChangeView("menu", Controls);
-        //}
-
-        //private void NavButton_User(object sender, EventArgs e)
-        //{
-        //    Button btn = (Button)sender;
-
-        //    switch (btn.Tag)
-        //    {
-        //        case "logout":
-        //            Main.User = null;
-        //            ChangeNavUser(Controls);
-        //            break;
-        //        case "login":
-        //            Main.ChangeView("login", Controls);
-        //            break;
-        //    }
-        //}
-
         private void Main_Resize(object sender, EventArgs e)
         {
             Update();
