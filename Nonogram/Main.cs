@@ -17,7 +17,7 @@ namespace Nonogram
             //MessageBox.Show($"{Width}, {Height}");
         }
 
-        public static void ChangeView(string control, Control.ControlCollection Controls)
+        public static void ChangeView(string controlName, Control.ControlCollection Controls)
         {
             Control? collectionControl = Controls.Find("pnlBody", false).FirstOrDefault();
 
@@ -25,8 +25,26 @@ namespace Nonogram
 
             for (int i = 0; i < collectionControl.Controls.Count; i++)
             {
-                if (collectionControl.Controls[i].Name == control) collectionControl.Controls[i].Visible = true;
-                else collectionControl.Controls[i].Visible = false;
+                Control control = collectionControl.Controls[i];
+                if (control.Name != controlName)
+                    control.Visible = false;
+                else
+                {
+                    foreach (TagType tag in control.Tag as List<TagType>)
+                    {
+                        if (tag == TagType.Guest && Main.User != null)
+                        {
+                            Main.ChangeView("menu", Controls);
+                            return;
+                        }
+                        else if (tag == TagType.Auth && Main.User == null)
+                        {
+                            Main.ChangeView("menu", Controls);
+                            return;
+                        }
+                    }
+                    control.Visible = true;
+                }
             }
         }
 
@@ -47,22 +65,23 @@ namespace Nonogram
                         control.Tag = "login";
                     }
                 }
-                return;
             }
-
-            for (int i = 0; i < collectionControl.Controls.Count; i++)
+            else
             {
-                Control control = collectionControl.Controls[i];
+                for (int i = 0; i < collectionControl.Controls.Count; i++)
+                {
+                    Control control = collectionControl.Controls[i];
 
-                if (control.Name == "lblUser")
-                {
-                    control.Visible = true;
-                    control.Text = Main.User.Name;
-                }
-                else if (control.Name == "btnUser")
-                {
-                    control.Text = "logout";
-                    control.Tag = "logout";
+                    if (control.Name == "lblUser")
+                    {
+                        control.Visible = true;
+                        control.Text = Main.User.Name;
+                    }
+                    else if (control.Name == "btnUser")
+                    {
+                        control.Text = "logout";
+                        control.Tag = "logout";
+                    }
                 }
             }
         }
@@ -84,6 +103,7 @@ namespace Nonogram
             menu.Name = "menu";
             menu.TabIndex = 0;
             menu.Visible = false;
+            menu.Tag = new List<TagType>();
             ///
             /// login
             ///
@@ -93,6 +113,7 @@ namespace Nonogram
             login.Name = "login";
             login.TabIndex = 0;
             login.Visible = false;
+            login.Tag = new List<TagType>() { TagType.Guest };
             ///
             /// Register
             ///
@@ -102,6 +123,7 @@ namespace Nonogram
             register.Name = "register";
             register.TabIndex = 0;
             register.Visible = false;
+            register.Tag = new List<TagType>() { TagType.Guest };
             ///
             /// Game
             /// 
@@ -111,6 +133,7 @@ namespace Nonogram
             game.Name = "game";
             game.TabIndex = 0;
             game.Visible = false;
+            game.Tag = new List<TagType>() { TagType.Auth };
             ///
             /// Main
             ///
