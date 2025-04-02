@@ -23,15 +23,12 @@ namespace Nonogram.Models
         }
 
         // https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
-        public static DPassword HashPassword(string password1, string password2)
+        public static DPassword HashPassword(string password)
         {
-            if (password1 != password2)
-                throw new ArgumentException("Passwords do not match!");
-
             byte[] salt = RandomNumberGenerator.GetBytes(keySize); 
 
             byte[] hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password1),
+                Encoding.UTF8.GetBytes(password),
                 salt,
                 iterations,
                 hashAlgorithm,
