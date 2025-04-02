@@ -31,6 +31,7 @@ namespace Nonogram.Views
                 case "logout":
                     Main.User = null;
                     Main.ChangeNavUser(FindForm().Controls);
+                    Main.ChangeView("menu", FindForm().Controls);
                     break;
                 case "login":
                     Main.ChangeView("login", FindForm().Controls);
