@@ -35,11 +35,13 @@ namespace Nonogram
                         if (tag == TagType.Guest && Main.User != null)
                         {
                             Main.ChangeView("menu", Controls);
+                            MessageBox.Show("Requires guest user");
                             return;
                         }
                         else if (tag == TagType.Auth && Main.User == null)
                         {
                             Main.ChangeView("menu", Controls);
+                            MessageBox.Show("Requires logged in user");
                             return;
                         }
                     }
