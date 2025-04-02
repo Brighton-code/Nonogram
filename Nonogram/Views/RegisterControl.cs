@@ -48,8 +48,13 @@ namespace Nonogram.Views
             }
 
             // Check if password1 is same as password2
+            if (password1 != password2)
+            {
+                MessageBox.Show("Passwords do not match!");
+                return;
+            }
 
-            User user = new User(name, User.HashPassword(password1, password2));
+            User user = new User(name, User.HashPassword(password1));
             db.Save(user, "../../../Database/Users.json");
             MessageBox.Show("Succefully created a account");
 
