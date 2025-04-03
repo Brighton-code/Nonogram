@@ -26,5 +26,10 @@ namespace Nonogram.Views
         {
             Main.ChangeView("game", FindForm().Controls);
         }
+
+        private void btnScoreboard_Click(object sender, EventArgs e)
+        {
+            Main.ChangeView("scoreboard", FindForm().Controls);
+        }
     }
 }

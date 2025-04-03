@@ -59,6 +59,7 @@
             btnScoreboard.TabIndex = 3;
             btnScoreboard.Text = "Scoreboard";
             btnScoreboard.UseVisualStyleBackColor = true;
+            btnScoreboard.Click += btnScoreboard_Click;
             // 
             // btnUser
             // 
