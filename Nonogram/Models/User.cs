@@ -54,11 +54,6 @@ namespace Nonogram.Models
         }
     }
 
-    //class DPassword(string hash, string salt)
-    //{
-    //    public string Hash { get; private set; } = hash;
-    //    public string Salt { get; private set; } = salt;
-    //}
     public class DPassword(string hash, string salt)
     {
         public string Hash { get; private set; } = hash;
