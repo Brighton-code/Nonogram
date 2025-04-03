@@ -32,6 +32,11 @@ namespace Nonogram
                 {
                     foreach (TagType tag in control.Tag as List<TagType>)
                     {
+                        if (tag == TagType.Load && control is ILoadType loadControl)
+                        {
+                            loadControl.LoadType();
+                        }
+
                         if (tag == TagType.Guest && Main.User != null)
                         {
                             Main.ChangeView("menu", Controls);
@@ -146,7 +151,7 @@ namespace Nonogram
             scoreboard.Name = "scoreboard";
             scoreboard.TabIndex = 0;
             scoreboard.Visible = false;
-            scoreboard.Tag = new List<TagType>();
+            scoreboard.Tag = new List<TagType>() { TagType.Load };
             ///
             /// Main
             ///

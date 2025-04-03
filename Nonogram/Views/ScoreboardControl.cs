@@ -12,12 +12,17 @@ using System.Windows.Forms;
 
 namespace Nonogram.Views
 {
-    public partial class ScoreboardControl : UserControl
+    public partial class ScoreboardControl : UserControl, ILoadType
     {
         public ScoreboardControl()
         {
             InitializeComponent();
+            LoadType();
+        }
 
+        public void LoadType()
+        {
+            dataGrid.Rows.Clear();
             JsonUserDatabase db = new JsonUserDatabase();
             List<User> users = db.GetUsers("../../../Database/Users.json");
 
@@ -28,7 +33,6 @@ namespace Nonogram.Views
                     dataGrid.Rows.Add([user.Name, history.GridSize, history.Seed, history.GameTime, history.CompletedAt, history.CreatedAt]);
                 }
             }
-
         }
     }
 }
