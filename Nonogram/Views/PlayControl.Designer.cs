@@ -42,6 +42,7 @@
             btnNewGame.TabIndex = 0;
             btnNewGame.Text = "New Game";
             btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.Click += btnNewGame_Click;
             // 
             // btnLoadGame
             // 

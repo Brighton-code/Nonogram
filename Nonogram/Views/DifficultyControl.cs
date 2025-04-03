@@ -18,5 +18,10 @@ namespace Nonogram.Views
         {
             InitializeComponent();
         }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

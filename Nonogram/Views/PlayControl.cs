@@ -16,5 +16,10 @@ namespace Nonogram.Views
         {
             InitializeComponent();
         }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
