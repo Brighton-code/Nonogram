@@ -43,6 +43,8 @@ namespace Nonogram.Views
 
         private void PnlGame_MouseClick(object? sender, MouseEventArgs e)
         {
+            if (_game == null) return;
+
             if (e.X < _game.GridStart.X || e.X > _game.GridStart.X + (_game.CellSize * _game.GridSize) - 1)
                 return;
             if (e.Y < _game.GridStart.Y || e.Y > _game.GridStart.Y + (_game.CellSize * _game.GridSize) - 1)
