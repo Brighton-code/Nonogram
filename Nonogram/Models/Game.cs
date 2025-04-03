@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nonogram.Models
 {
@@ -80,6 +83,17 @@ namespace Nonogram.Models
             else Complete = false;
         }
 
+        public string EncodeMarked()
+        {
+            return Base64EncodeArr(Flatten(Marked));
+        }
+
+        static string Base64EncodeArr<T>(T arr)
+        {
+            byte[] byteArr = SerializeArray(arr);
+            return Convert.ToBase64String(byteArr);
+        }
+
         static bool AreJaggedArraysEqual(int[][] array1, int[][] array2)
         {
             // Check if both arrays are null or not
@@ -107,6 +121,26 @@ namespace Nonogram.Models
             }
 
             return true;
+        }
+
+        public static T[] Flatten<T>(T[,] arr)
+        {
+            T[] result = new T[arr.Length];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    result[i * arr.GetLength(1) + j] = arr[i, j];
+                }
+            }
+            return result;
+        }
+
+        public static byte[] SerializeArray<T>(T arr)
+        {
+            string jsonString = JsonSerializer.Serialize(arr);
+
+            return Encoding.UTF8.GetBytes(jsonString);
         }
     }
 

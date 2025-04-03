@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Nonogram.Models
@@ -15,11 +16,14 @@ namespace Nonogram.Models
 
         public string Name { get; private set; }
         public DPassword Password { get; private set; }
+        public List<GameHistory> History { get; private set; } = [];
 
-        public User(string name, DPassword password)
+        [JsonConstructor]
+        public User(string name, DPassword password, List<GameHistory> history)
         {
             Name = name;
             Password = password;
+            History = history ?? [];
         }
 
         // https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
@@ -53,11 +57,6 @@ namespace Nonogram.Models
         }
     }
 
-    //class DPassword(string hash, string salt)
-    //{
-    //    public string Hash { get; private set; } = hash;
-    //    public string Salt { get; private set; } = salt;
-    //}
     public class DPassword(string hash, string salt)
     {
         public string Hash { get; private set; } = hash;

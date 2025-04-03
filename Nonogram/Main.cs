@@ -32,6 +32,11 @@ namespace Nonogram
                 {
                     foreach (TagType tag in control.Tag as List<TagType>)
                     {
+                        if (tag == TagType.Load && control is ILoadType loadControl)
+                        {
+                            loadControl.LoadType();
+                        }
+
                         if (tag == TagType.Guest && Main.User != null)
                         {
                             Main.ChangeView("menu", Controls);
@@ -96,7 +101,8 @@ namespace Nonogram
             register = new RegisterControl();
             load = new GameLoadControl();
             game = new GameControl();
-
+            scoreboard = new ScoreboardControl();
+            
             SuspendLayout();
             ///
             /// menu
@@ -149,6 +155,16 @@ namespace Nonogram
             game.Visible = false;
             game.Tag = new List<TagType>() { TagType.Auth };
             ///
+            /// Scoreboard
+            /// 
+            scoreboard.Dock = DockStyle.Fill;
+            scoreboard.Location = new Point(0, 0);
+            scoreboard.Margin = new Padding(0);
+            scoreboard.Name = "scoreboard";
+            scoreboard.TabIndex = 0;
+            scoreboard.Visible = false;
+            scoreboard.Tag = new List<TagType>() { TagType.Load };
+            ///
             /// Main
             ///
             pnlBody.Controls.Add(menu);
@@ -156,6 +172,7 @@ namespace Nonogram
             pnlBody.Controls.Add(register);
             pnlBody.Controls.Add(load);
             pnlBody.Controls.Add(game);
+            pnlBody.Controls.Add(scoreboard);
             ResumeLayout(false);
         }
 
@@ -164,6 +181,7 @@ namespace Nonogram
         RegisterControl register;
         GameLoadControl load;
         GameControl game;
+        ScoreboardControl scoreboard;
         #endregion
 
         private void Main_Resize(object sender, EventArgs e)
