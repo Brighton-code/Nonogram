@@ -34,7 +34,6 @@ namespace Nonogram.Database
 
         public void Save(User user, string filePath)
         {
-            Debug.WriteLine("test");
             List<User> users = GetUsers(filePath);
             users.Add(user);
 
