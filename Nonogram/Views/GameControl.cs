@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using Nonogram.Database;
 using Nonogram.Models;
@@ -18,6 +19,9 @@ namespace Nonogram.Views
     public partial class GameControl : UserControl
     {
         private Game _game;
+        private Stopwatch _stopwatch;
+        private System.Timers.Timer _timer;
+
         FontFamily fontFamily = new("Arial");
         Font font;
         Font fontHigh;
@@ -29,6 +33,12 @@ namespace Nonogram.Views
             pnlGame.Paint += PnlGame_Paint;
             pnlGame.MouseClick += PnlGame_MouseClick;
             pnlGame.Resize += PnlGame_Resize;
+
+            _timer = new System.Timers.Timer();
+            _timer.Interval = 10;
+            _timer.Elapsed += UpdateTimeLabel;
+
+            _stopwatch = new Stopwatch();
 
             // https://stackoverflow.com/questions/8046560/how-to-stop-flickering-c-sharp-winforms
             typeof(Panel).InvokeMember("DoubleBuffered",
@@ -68,6 +78,8 @@ namespace Nonogram.Views
             _game.ValidateGame();
             if (_game.Complete)
             {
+                _stopwatch.Stop();
+                _timer.Stop();
                 MessageBox.Show("Game is complete");
 
                 int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed);
@@ -160,14 +172,24 @@ namespace Nonogram.Views
                         g.DrawString(_game.ColHints[i][j].ToString(), fontHigh, Brushes.Black, _game.GridStart.X + (_game.CellSize * i), _game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length) + (_game.CellSize * j) + (int)(_game.CellSize / 5));
 
             sw.Stop();
-            lblStopwatch.Text = sw.Elapsed.ToString();
+            //lblStopwatch.Text = sw.Elapsed.ToString();
         }
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
+            _timer.Start();
+            _stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
             //MessageBox.Show(size.ToString());
         }
+        private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                lblStopwatch.Text = _stopwatch.Elapsed.ToString(@"mm\:ss\.ff");
+            }));
+        }
+
         private void inGridSize_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
