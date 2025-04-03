@@ -20,6 +20,8 @@ namespace Nonogram.Database
 
     public class JsonUserDatabase : IUser
     {
+        readonly JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+
         public List<User> GetUsers(string filePath)
         {
             if (!File.Exists(filePath))
@@ -52,7 +54,7 @@ namespace Nonogram.Database
             List<User> users = GetUsers(filePath);
             users.Add(user);
 
-            string json = JsonSerializer.Serialize(users);
+            string json = JsonSerializer.Serialize(users, options);
             File.WriteAllText(filePath, json);
         }
     }
