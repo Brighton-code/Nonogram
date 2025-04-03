@@ -12,7 +12,7 @@ namespace Nonogram.Database
 {
     interface IUser
     {
-        public void Save(User user, string filePath);
+        public void SaveNewUser(User user, string filePath);
         public List<User> GetUsers(string filePath);
     }
 
@@ -32,7 +32,7 @@ namespace Nonogram.Database
             return tmp;
         }
 
-        public void Save(User user, string filePath)
+        public void SaveNewUser(User user, string filePath)
         {
             List<User> users = GetUsers(filePath);
             users.Add(user);

@@ -15,7 +15,7 @@ namespace NonogramTest
             User user = new User("Test3", password);
 
             JsonUserDatabase db = new JsonUserDatabase();
-            db.Save(user, _filePath);
+            db.SaveNewUser(user, _filePath);
         }
 
         [TestMethod]

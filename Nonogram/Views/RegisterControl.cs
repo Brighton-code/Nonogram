@@ -55,7 +55,7 @@ namespace Nonogram.Views
             }
 
             User user = new User(name, User.HashPassword(password1));
-            db.Save(user, "../../../Database/Users.json");
+            db.SaveNewUser(user, "../../../Database/Users.json");
             MessageBox.Show("Succefully created a account");
 
             // Change to game/menu screen
