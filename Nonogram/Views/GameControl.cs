@@ -80,7 +80,7 @@ namespace Nonogram.Views
                 {
                     GameHistory history = new GameHistory();
                     history.Seed = _game.Seed;
-
+                    history.GridSize = _game.GridSize;
                     history.GameState = _game.EncodeMarked();
                     history.CompletedAt = DateTime.Now;
                     history.UpdatedAt = DateTime.Now;
