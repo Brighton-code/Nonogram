@@ -30,12 +30,21 @@
         {
             pnlLayout = new Panel();
             lblScoreboard = new Label();
+            dataGrid = new DataGridView();
+            ColUser = new DataGridViewTextBoxColumn();
+            ColSize = new DataGridViewTextBoxColumn();
+            ColSeed = new DataGridViewTextBoxColumn();
+            ColTime = new DataGridViewTextBoxColumn();
+            ColCompletedAt = new DataGridViewTextBoxColumn();
+            ColStartedAt = new DataGridViewTextBoxColumn();
             pnlLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
             SuspendLayout();
             // 
             // pnlLayout
             // 
             pnlLayout.Anchor = AnchorStyles.None;
+            pnlLayout.Controls.Add(dataGrid);
             pnlLayout.Controls.Add(lblScoreboard);
             pnlLayout.Location = new Point(0, 0);
             pnlLayout.Margin = new Padding(0);
@@ -54,6 +63,58 @@
             lblScoreboard.TabIndex = 1;
             lblScoreboard.Text = "Scoreboard";
             // 
+            // dataGrid
+            // 
+            dataGrid.AllowUserToAddRows = false;
+            dataGrid.AllowUserToDeleteRows = false;
+            dataGrid.AllowUserToOrderColumns = true;
+            dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, ColTime, ColCompletedAt, ColStartedAt });
+            dataGrid.Enabled = false;
+            dataGrid.Location = new Point(50, 153);
+            dataGrid.Margin = new Padding(0);
+            dataGrid.Name = "dataGrid";
+            dataGrid.ReadOnly = true;
+            dataGrid.RowHeadersWidth = 24;
+            dataGrid.Size = new Size(400, 300);
+            dataGrid.TabIndex = 2;
+            // 
+            // ColUser
+            // 
+            ColUser.HeaderText = "User";
+            ColUser.Name = "ColUser";
+            ColUser.ReadOnly = true;
+            // 
+            // ColSize
+            // 
+            ColSize.HeaderText = "Size";
+            ColSize.Name = "ColSize";
+            ColSize.ReadOnly = true;
+            // 
+            // ColSeed
+            // 
+            ColSeed.HeaderText = "Seed";
+            ColSeed.Name = "ColSeed";
+            ColSeed.ReadOnly = true;
+            // 
+            // ColTime
+            // 
+            ColTime.HeaderText = "Time";
+            ColTime.Name = "ColTime";
+            ColTime.ReadOnly = true;
+            // 
+            // ColCompletedAt
+            // 
+            ColCompletedAt.HeaderText = "CompletedAt";
+            ColCompletedAt.Name = "ColCompletedAt";
+            ColCompletedAt.ReadOnly = true;
+            // 
+            // ColStartedAt
+            // 
+            ColStartedAt.HeaderText = "StartedAt";
+            ColStartedAt.Name = "ColStartedAt";
+            ColStartedAt.ReadOnly = true;
+            // 
             // ScoreboardControl
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -64,6 +125,7 @@
             Size = new Size(500, 500);
             pnlLayout.ResumeLayout(false);
             pnlLayout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGrid).EndInit();
             ResumeLayout(false);
         }
 
@@ -71,5 +133,12 @@
 
         private Panel pnlLayout;
         private Label lblScoreboard;
+        private DataGridView dataGrid;
+        private DataGridViewTextBoxColumn ColUser;
+        private DataGridViewTextBoxColumn ColSize;
+        private DataGridViewTextBoxColumn ColSeed;
+        private DataGridViewTextBoxColumn ColTime;
+        private DataGridViewTextBoxColumn ColCompletedAt;
+        private DataGridViewTextBoxColumn ColStartedAt;
     }
 }
