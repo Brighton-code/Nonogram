@@ -15,6 +15,7 @@ namespace Nonogram.Models
 
         public string Name { get; private set; }
         public DPassword Password { get; private set; }
+        public List<GameHistory> History { get; private set; } = [];
 
         public User(string name, DPassword password)
         {
