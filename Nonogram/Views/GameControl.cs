@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Nonogram.Database;
 using Nonogram.Models;
 
 namespace Nonogram.Views
@@ -42,6 +43,8 @@ namespace Nonogram.Views
 
         private void PnlGame_MouseClick(object? sender, MouseEventArgs e)
         {
+            if (_game == null) return;
+
             if (e.X < _game.GridStart.X || e.X > _game.GridStart.X + (_game.CellSize * _game.GridSize) - 1)
                 return;
             if (e.Y < _game.GridStart.Y || e.Y > _game.GridStart.Y + (_game.CellSize * _game.GridSize) - 1)
@@ -63,7 +66,34 @@ namespace Nonogram.Views
             pnlGame.Invalidate();
 
             _game.ValidateGame();
-            if (_game.Complete) MessageBox.Show("Game is complete");
+            if (_game.Complete)
+            {
+                MessageBox.Show("Game is complete");
+
+                int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed);
+
+                if (indx != -1)
+                {
+                    Main.User.History[indx].GameState = _game.EncodeMarked();
+                    Main.User.History[indx].CompletedAt = DateTime.Now;
+                    Main.User.History[indx].CreatedAt = DateTime.Now;
+                    //Main.User.History[indx].UpdatedAt = DateTime.Now;
+                }
+                else
+                {
+                    GameHistory history = new GameHistory();
+                    history.Seed = _game.Seed;
+                    history.GridSize = _game.GridSize;
+                    history.GameState = _game.EncodeMarked();
+                    history.CompletedAt = DateTime.Now;
+                    history.CreatedAt = DateTime.Now;
+                    //history.UpdatedAt = DateTime.Now;
+                    Main.User.History.Add(history);
+                }
+
+                JsonUserDatabase db = new JsonUserDatabase();
+                db.SaveToUser(Main.User, "../../../Database/Users.json");
+            }
         }
 
         private void PnlGame_Paint(object? sender, PaintEventArgs e)

@@ -18,6 +18,12 @@ namespace Nonogram.Models
     {
         None,
         Auth,
-        Guest
+        Guest,
+        Load
+    }
+
+    public interface ILoadType
+    {
+        public void LoadType();
     }
 }
