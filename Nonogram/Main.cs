@@ -99,8 +99,10 @@ namespace Nonogram
             menu = new MenuControl();
             login = new LoginControl();
             register = new RegisterControl();
+            load = new GameLoadControl();
             game = new GameControl();
             scoreboard = new ScoreboardControl();
+            
             SuspendLayout();
             ///
             /// menu
@@ -133,6 +135,16 @@ namespace Nonogram
             register.Visible = false;
             register.Tag = new List<TagType>() { TagType.Guest };
             ///
+            /// Load
+            /// 
+            load.Dock = DockStyle.Fill;
+            load.Location = new Point(0, 0);
+            load.Margin = new Padding(0);
+            load.Name = "load";
+            load.TabIndex = 0;
+            load.Visible = false;
+            load.Tag = new List<TagType>() { TagType.Auth };
+            ///
             /// Game
             /// 
             game.Dock = DockStyle.Fill;
@@ -158,6 +170,7 @@ namespace Nonogram
             pnlBody.Controls.Add(menu);
             pnlBody.Controls.Add(login);
             pnlBody.Controls.Add(register);
+            pnlBody.Controls.Add(load);
             pnlBody.Controls.Add(game);
             pnlBody.Controls.Add(scoreboard);
             ResumeLayout(false);
@@ -166,6 +179,7 @@ namespace Nonogram
         MenuControl menu;
         LoginControl login;
         RegisterControl register;
+        GameLoadControl load;
         GameControl game;
         ScoreboardControl scoreboard;
         #endregion
