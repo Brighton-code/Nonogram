@@ -21,7 +21,7 @@ namespace Nonogram.Views
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+            Main.ChangeView("game", FindForm().Controls);
         }
     }
 }

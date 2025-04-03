@@ -94,6 +94,7 @@ namespace Nonogram
             menu = new MenuControl();
             login = new LoginControl();
             register = new RegisterControl();
+
             game = new GameControl();
             SuspendLayout();
             ///

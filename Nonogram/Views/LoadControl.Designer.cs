@@ -1,6 +1,6 @@
 ﻿namespace Nonogram.Views
 {
-    partial class PlayControl
+    partial class LoadControl
     {
         /// <summary> 
         /// Required designer variable.

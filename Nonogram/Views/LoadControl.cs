@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Nonogram.Views
 {
-    public partial class PlayControl : UserControl
+    public partial class LoadControl : UserControl
     {
-        public PlayControl()
+        public LoadControl()
         {
             InitializeComponent();
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-
+            Main.ChangeView("difficulty", FindForm().Controls);
         }
     }
 }
