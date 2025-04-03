@@ -94,7 +94,7 @@ namespace Nonogram
             menu = new MenuControl();
             login = new LoginControl();
             register = new RegisterControl();
-            load = new LoadControl();
+            load = new GameLoadControl();
             game = new GameControl();
 
             SuspendLayout();
@@ -162,7 +162,7 @@ namespace Nonogram
         MenuControl menu;
         LoginControl login;
         RegisterControl register;
-        LoadControl load;
+        GameLoadControl load;
         GameControl game;
         #endregion
 

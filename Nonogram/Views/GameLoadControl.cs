@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Nonogram.Views
 {
-    public partial class LoadControl : UserControl
+    public partial class GameLoadControl : UserControl
     {
-        public LoadControl()
+        public GameLoadControl()
         {
             InitializeComponent();
         }
