@@ -19,7 +19,7 @@ namespace Nonogram.Views
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            Main.ChangeView("difficulty", FindForm().Controls);
+            Main.ChangeView("game", FindForm().Controls);
         }
     }
 }

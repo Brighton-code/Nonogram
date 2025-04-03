@@ -95,7 +95,6 @@ namespace Nonogram
             login = new LoginControl();
             register = new RegisterControl();
             load = new LoadControl();
-            difficulty = new DifficultyControl();
             game = new GameControl();
 
             SuspendLayout();
@@ -140,16 +139,6 @@ namespace Nonogram
             load.Visible = false;
             load.Tag = new List<TagType>() { TagType.Auth };
             ///
-            /// Difficulty
-            /// 
-            difficulty.Dock = DockStyle.Fill;
-            difficulty.Location = new Point(0, 0);
-            difficulty.Margin = new Padding(0);
-            difficulty.Name = "difficulty";
-            difficulty.TabIndex = 0;
-            difficulty.Visible = false;
-            difficulty.Tag = new List<TagType>() { TagType.Auth };
-            ///
             /// Game
             /// 
             game.Dock = DockStyle.Fill;
@@ -166,7 +155,6 @@ namespace Nonogram
             pnlBody.Controls.Add(login);
             pnlBody.Controls.Add(register);
             pnlBody.Controls.Add(load);
-            pnlBody.Controls.Add(difficulty);
             pnlBody.Controls.Add(game);
             ResumeLayout(false);
         }
@@ -175,7 +163,6 @@ namespace Nonogram
         LoginControl login;
         RegisterControl register;
         LoadControl load;
-        DifficultyControl difficulty;
         GameControl game;
         #endregion
 
