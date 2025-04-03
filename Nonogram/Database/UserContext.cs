@@ -38,15 +38,13 @@ namespace Nonogram.Database
         public void SaveToUser(User user, string filePath)
         {
             List<User> users = GetUsers(filePath);
+            int indx = users.FindIndex(u => u.Name == user.Name);
 
-            for (int i = 0; i < users.Count; i++)
-            {
-                if (users[i] != user)
-                    continue;
+            if (indx != -1)
+                users[indx] = user;
 
-                users[i] = user;
-                return;
-            }
+            string json = JsonSerializer.Serialize(users, options);
+            File.WriteAllText(filePath, json);
         }
 
         public void SaveNewUser(User user, string filePath)
