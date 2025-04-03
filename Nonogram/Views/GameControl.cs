@@ -74,6 +74,7 @@ namespace Nonogram.Views
                 {
                     Main.User.History[indx].GameState = _game.EncodeMarked();
                     Main.User.History[indx].CompletedAt = DateTime.Now;
+                    Main.User.History[indx].CreatedAt = DateTime.Now;
                     //Main.User.History[indx].UpdatedAt = DateTime.Now;
                 }
                 else
@@ -83,6 +84,7 @@ namespace Nonogram.Views
                     history.GridSize = _game.GridSize;
                     history.GameState = _game.EncodeMarked();
                     history.CompletedAt = DateTime.Now;
+                    history.CreatedAt = DateTime.Now;
                     //history.UpdatedAt = DateTime.Now;
                     Main.User.History.Add(history);
                 }
