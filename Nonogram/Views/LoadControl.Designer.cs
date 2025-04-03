@@ -31,12 +31,14 @@
             btnNewGame = new Button();
             btnLoadGame = new Button();
             lbPickGame = new Label();
+            pnlLayout = new Panel();
+            pnlLayout.SuspendLayout();
             SuspendLayout();
             // 
             // btnNewGame
             // 
             btnNewGame.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNewGame.Location = new Point(100, 197);
+            btnNewGame.Location = new Point(103, 207);
             btnNewGame.Name = "btnNewGame";
             btnNewGame.Size = new Size(300, 90);
             btnNewGame.TabIndex = 0;
@@ -47,7 +49,7 @@
             // btnLoadGame
             // 
             btnLoadGame.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLoadGame.Location = new Point(100, 293);
+            btnLoadGame.Location = new Point(103, 303);
             btnLoadGame.Name = "btnLoadGame";
             btnLoadGame.Size = new Size(300, 90);
             btnLoadGame.TabIndex = 1;
@@ -58,23 +60,34 @@
             // 
             lbPickGame.AutoSize = true;
             lbPickGame.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbPickGame.Location = new Point(58, 87);
+            lbPickGame.Location = new Point(61, 97);
             lbPickGame.Name = "lbPickGame";
             lbPickGame.Size = new Size(376, 65);
             lbPickGame.TabIndex = 2;
             lbPickGame.Text = "Pick your game";
             // 
-            // PlayControl
+            // pnlLayout
+            // 
+            pnlLayout.Anchor = AnchorStyles.None;
+            pnlLayout.Controls.Add(btnNewGame);
+            pnlLayout.Controls.Add(lbPickGame);
+            pnlLayout.Controls.Add(btnLoadGame);
+            pnlLayout.Location = new Point(0, 0);
+            pnlLayout.Margin = new Padding(0);
+            pnlLayout.Name = "pnlLayout";
+            pnlLayout.Size = new Size(500, 500);
+            pnlLayout.TabIndex = 3;
+            // 
+            // LoadControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lbPickGame);
-            Controls.Add(btnLoadGame);
-            Controls.Add(btnNewGame);
-            Name = "PlayControl";
+            Controls.Add(pnlLayout);
+            Name = "LoadControl";
             Size = new Size(500, 500);
+            pnlLayout.ResumeLayout(false);
+            pnlLayout.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -82,5 +95,6 @@
         private Button btnNewGame;
         private Button btnLoadGame;
         private Label lbPickGame;
+        private Panel pnlLayout;
     }
 }
