@@ -12,6 +12,7 @@ namespace Nonogram.Database
 {
     interface IUser
     {
+        public void SaveToUser(User user, string filePath);
         public void SaveNewUser(User user, string filePath);
         public List<User> GetUsers(string filePath);
     }
@@ -30,6 +31,20 @@ namespace Nonogram.Database
 
             List<User> tmp = JsonSerializer.Deserialize<List<User>>(json);
             return tmp;
+        }
+
+        public void SaveToUser(User user, string filePath)
+        {
+            List<User> users = GetUsers(filePath);
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i] != user)
+                    continue;
+
+                users[i] = user;
+                return;
+            }
         }
 
         public void SaveNewUser(User user, string filePath)
