@@ -38,7 +38,7 @@ namespace Nonogram.Views
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            GameControl gc = (GameControl)FindForm().Controls.Find("game", false).FirstOrDefault();
+            GameControl gc = (GameControl)FindForm().Controls.Find("game", true).FirstOrDefault();
             if(gc != null)
             {
                 gc.ChangeGrid(10);
