@@ -23,7 +23,10 @@ namespace Nonogram.Views
 
             foreach (User user in users)
             {
-                dataGrid.Rows.Add(user);
+                foreach (GameHistory history in user.History)
+                {
+                    dataGrid.Rows.Add([user.Name, history.GridSize, history.Seed, history.GameTime, history.CompletedAt, history.CreatedAt]);
+                }
             }
 
         }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             pnlLayout = new Panel();
-            lblScoreboard = new Label();
             dataGrid = new DataGridView();
             ColUser = new DataGridViewTextBoxColumn();
             ColSize = new DataGridViewTextBoxColumn();
             ColSeed = new DataGridViewTextBoxColumn();
             ColTime = new DataGridViewTextBoxColumn();
             ColCompletedAt = new DataGridViewTextBoxColumn();
-            ColStartedAt = new DataGridViewTextBoxColumn();
+            ColCreatedAt = new DataGridViewTextBoxColumn();
+            lblScoreboard = new Label();
             pnlLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
             SuspendLayout();
@@ -52,25 +52,12 @@
             pnlLayout.Size = new Size(500, 500);
             pnlLayout.TabIndex = 0;
             // 
-            // lblScoreboard
-            // 
-            lblScoreboard.AutoSize = true;
-            lblScoreboard.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
-            lblScoreboard.Location = new Point(42, 40);
-            lblScoreboard.Margin = new Padding(0);
-            lblScoreboard.Name = "lblScoreboard";
-            lblScoreboard.Size = new Size(416, 93);
-            lblScoreboard.TabIndex = 1;
-            lblScoreboard.Text = "Scoreboard";
-            // 
             // dataGrid
             // 
             dataGrid.AllowUserToAddRows = false;
             dataGrid.AllowUserToDeleteRows = false;
             dataGrid.AllowUserToOrderColumns = true;
-            dataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, ColTime, ColCompletedAt, ColStartedAt });
-            dataGrid.Enabled = false;
+            dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, ColTime, ColCompletedAt, ColCreatedAt });
             dataGrid.Location = new Point(50, 153);
             dataGrid.Margin = new Padding(0);
             dataGrid.Name = "dataGrid";
@@ -109,11 +96,22 @@
             ColCompletedAt.Name = "ColCompletedAt";
             ColCompletedAt.ReadOnly = true;
             // 
-            // ColStartedAt
+            // ColCreatedAt
             // 
-            ColStartedAt.HeaderText = "StartedAt";
-            ColStartedAt.Name = "ColStartedAt";
-            ColStartedAt.ReadOnly = true;
+            ColCreatedAt.HeaderText = "CreatedAt";
+            ColCreatedAt.Name = "ColCreatedAt";
+            ColCreatedAt.ReadOnly = true;
+            // 
+            // lblScoreboard
+            // 
+            lblScoreboard.AutoSize = true;
+            lblScoreboard.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
+            lblScoreboard.Location = new Point(42, 40);
+            lblScoreboard.Margin = new Padding(0);
+            lblScoreboard.Name = "lblScoreboard";
+            lblScoreboard.Size = new Size(416, 93);
+            lblScoreboard.TabIndex = 1;
+            lblScoreboard.Text = "Scoreboard";
             // 
             // ScoreboardControl
             // 
@@ -139,6 +137,6 @@
         private DataGridViewTextBoxColumn ColSeed;
         private DataGridViewTextBoxColumn ColTime;
         private DataGridViewTextBoxColumn ColCompletedAt;
-        private DataGridViewTextBoxColumn ColStartedAt;
+        private DataGridViewTextBoxColumn ColCreatedAt;
     }
 }
