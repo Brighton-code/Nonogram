@@ -31,7 +31,7 @@ namespace Nonogram.Database
             if (string.IsNullOrWhiteSpace(json))
                 return new List<User>();
 
-            List<User> tmp = JsonSerializer.Deserialize<List<User>>(json);
+            List<User> tmp = JsonSerializer.Deserialize<List<User>>(json, options);
             return tmp;
         }
 

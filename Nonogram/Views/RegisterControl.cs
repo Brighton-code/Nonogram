@@ -54,7 +54,7 @@ namespace Nonogram.Views
                 return;
             }
 
-            User user = new User(name, User.HashPassword(password1));
+            User user = new User(name, User.HashPassword(password1), []);
             db.SaveNewUser(user, "../../../Database/Users.json");
             MessageBox.Show("Succefully created a account");
 

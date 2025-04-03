@@ -12,7 +12,7 @@ namespace NonogramTest
         public void TestUserStore()
         {
             DPassword password = User.HashPassword("Hello");
-            User user = new User("Test3", password);
+            User user = new User("Test3", password, []);
 
             JsonUserDatabase db = new JsonUserDatabase();
             db.SaveNewUser(user, _filePath);
