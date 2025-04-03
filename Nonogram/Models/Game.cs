@@ -108,6 +108,19 @@ namespace Nonogram.Models
 
             return true;
         }
+
+        public static T[] Flatten<T>(T[,] arr)
+        {
+            T[] result = new T[arr.Length];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    result[i * arr.GetLength(1) + j] = arr[i, j];
+                }
+            }
+            return result;
+        }
     }
 
     public enum Marked
