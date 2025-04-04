@@ -61,9 +61,9 @@
             // cbGameHistory
             // 
             cbGameHistory.FormattingEnabled = true;
-            cbGameHistory.Location = new Point(109, 139);
+            cbGameHistory.Location = new Point(63, 136);
             cbGameHistory.Name = "cbGameHistory";
-            cbGameHistory.Size = new Size(333, 23);
+            cbGameHistory.Size = new Size(350, 23);
             cbGameHistory.TabIndex = 2;
             // 
             // lblGameHistoryMenu
