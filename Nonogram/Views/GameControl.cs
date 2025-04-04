@@ -53,8 +53,14 @@ namespace Nonogram.Views
         {
             if (_game != null)
             {
-                _stopwatch.Stop();
+                StoreStateToHistory();
+
+                _stopwatch.Reset();
                 _timer.Stop();
+
+                _game = null;
+                _history = null;
+                lblSeed.Text = "Seed";
             }
         }
 
