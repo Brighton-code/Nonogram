@@ -119,15 +119,16 @@ namespace Nonogram.Models
 
         public static T[] Flatten<T>(T[,] arr)
         {
-            T[] result = new T[arr.Length];
-            for (int i = 0; i < arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    result[i * arr.GetLength(1) + j] = arr[i, j];
-                }
-            }
-            return result;
+            return [.. arr.Cast<T>()];
+            //T[] result = new T[arr.Length];
+            //for (int i = 0; i < arr.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < arr.GetLength(1); j++)
+            //    {
+            //        result[i * arr.GetLength(1) + j] = arr[i, j];
+            //    }
+            //}
+            //return result;
         }
 
         public static byte[] SerializeArray<T>(T arr)
