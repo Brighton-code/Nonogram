@@ -63,6 +63,7 @@ namespace Nonogram.Views
             _game = null;
             _history = null;
             lblSeed.Text = "Seed";
+            lblStopwatch.Text = "Draw time";
         }
 
         private void StoreStateToHistory()
