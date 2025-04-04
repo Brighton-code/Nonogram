@@ -78,7 +78,7 @@ namespace Nonogram.Views
             _history.UpdatedAt = DateTime.Now;
 
             if (_game.Complete)
-                _history.CompletedAt = DateTime.Now;
+                _history.CompletedAt = _history.UpdatedAt;
 
             int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
 
