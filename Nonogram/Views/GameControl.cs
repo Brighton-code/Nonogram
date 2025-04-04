@@ -153,19 +153,6 @@ namespace Nonogram.Views
             }
             g.DrawRectangle(Pens.Black, area);
 
-#if DEBUG
-            // Debug
-            if (showSolution)
-            {
-                for (int row = 0; row < _game.Solution.GetLength(0); row++)
-                    for (int col = 0; col < _game.Solution.GetLength(1); col++)
-                        if (_game.Solution[row, col] == 1)
-                            g.FillRectangle(Brushes.Blue, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-            }
-
-            // End Debug
-#endif
-
             // Draw Marked cells
             for (int row = 0; row < _game.Marked.GetLength(0); row++)
                 for (int col = 0; col < _game.Marked.GetLength(1); col++)
@@ -173,6 +160,25 @@ namespace Nonogram.Views
                         g.FillRectangle(Brushes.Black, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
                     else if (_game.Marked[row, col] == EMarked.Wrong)
                         g.DrawString("X", font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
+
+#if DEBUG
+            if (showSolution)
+                for (int row = 0; row < _game.Solution.GetLength(0); row++)
+                    for (int col = 0; col < _game.Solution.GetLength(1); col++)
+                        if (_game.Solution[row, col] == 1)
+                        {
+
+                            if (_game.Marked[row, col] == EMarked.None)
+                                g.FillRectangle(Brushes.Blue, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+                            else if (_game.Marked[row, col] == EMarked.Wrong)
+                                g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+                            else if (_game.Marked[row, col] == EMarked.Done)
+                                g.FillRectangle(Brushes.Green, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+                        }
+                        else
+                            if (_game.Marked[row, col] == EMarked.Done)
+                                g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+#endif
 
             // Draw Horizontal Hints
             for (int i = 0; i < _game.RowHints.Length; i++)
