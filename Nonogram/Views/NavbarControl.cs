@@ -29,9 +29,9 @@ namespace Nonogram.Views
             switch (btn.Tag)
             {
                 case "logout":
+                    Main.ChangeView("menu", FindForm().Controls);
                     Main.User = null;
                     Main.ChangeNavUser(FindForm().Controls);
-                    Main.ChangeView("menu", FindForm().Controls);
                     break;
                 case "login":
                     Main.ChangeView("login", FindForm().Controls);
