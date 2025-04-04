@@ -32,5 +32,13 @@ namespace Nonogram.Models
                 return base.ElapsedTicks + StartOffset.Ticks;
             }
         }
+
+        public new TimeSpan Elapsed
+        {
+            get
+            {
+                return base.Elapsed + StartOffset;
+            }
+        }
     }
 }

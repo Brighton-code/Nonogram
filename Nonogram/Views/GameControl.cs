@@ -19,7 +19,7 @@ namespace Nonogram.Views
     public partial class GameControl : UserControl
     {
         private Game _game;
-        private Stopwatch _stopwatch;
+        private CustomStopwatch _stopwatch;
         private System.Timers.Timer _timer;
         private GameHistory _history;
 
@@ -41,7 +41,7 @@ namespace Nonogram.Views
             _timer.Interval = 10;
             _timer.Elapsed += UpdateTimeLabel;
 
-            _stopwatch = new Stopwatch();
+            _stopwatch = new CustomStopwatch(new TimeSpan());
 
             // https://stackoverflow.com/questions/8046560/how-to-stop-flickering-c-sharp-winforms
             typeof(Panel).InvokeMember("DoubleBuffered",
