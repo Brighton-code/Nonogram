@@ -28,7 +28,6 @@ namespace Nonogram.Views
             if (!Visible) return;
 
             cbGameHistory.Items.Clear();
-            cbGameHistory.SelectedIndex = -1;
 
             userHistory = Main.User.History.Where(h => h.CompletedAt == null).ToList();
 
@@ -37,6 +36,8 @@ namespace Nonogram.Views
             {
                 cbGameHistory.Items.Add($"Game size: {history.GridSize}x{history.GridSize}, Playtime: {history.GameTime.ToString(@"hh\:mm\:ss\.ff")}, Started at: {history.CreatedAt.Value.ToString(@"dd-MM-yyyy")}");
             }
+
+            if(cbGameHistory.Items.Count > 0) cbGameHistory.SelectedIndex = 0;
         }
 
         private void btnLoadGame_Click(object sender, EventArgs e)
@@ -44,13 +45,13 @@ namespace Nonogram.Views
             GameControl gc = (GameControl)FindForm().Controls.Find("game", true).FirstOrDefault();
 
             int a = cbGameHistory.SelectedIndex;
+            Main.ChangeView("game", FindForm().Controls);
 
             if (gc != null) 
             {
                 gc.LoadHistory(userHistory[cbGameHistory.SelectedIndex]);
             }
 
-            Main.ChangeView("game", FindForm().Controls);
         }
     }
 }
