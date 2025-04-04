@@ -41,7 +41,7 @@ namespace Nonogram.Views
             _timer.Interval = 10;
             _timer.Elapsed += UpdateTimeLabel;
 
-            _stopwatch = new CustomStopwatch(new TimeSpan());
+            _stopwatch = new CustomStopwatch();
 
             // https://stackoverflow.com/questions/8046560/how-to-stop-flickering-c-sharp-winforms
             typeof(Panel).InvokeMember("DoubleBuffered",
@@ -201,6 +201,7 @@ namespace Nonogram.Views
             _history.CreatedAt = DateTime.Now;
 
             _timer.Start();
+            _stopwatch.StartOffset = TimeSpan.Zero;
             _stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
             //MessageBox.Show(size.ToString());
@@ -211,7 +212,7 @@ namespace Nonogram.Views
             _game = new Game(gameHistory.GridSize, gameHistory.Seed);
             _game.ConvertGameStateTo2Darray(gameHistory.GameState);
             _history = gameHistory;
-            _stopwatch = new CustomStopwatch(gameHistory.GameTime);
+            _stopwatch.StartOffset = gameHistory.GameTime;
             _stopwatch.Start();
             _timer.Start();
             lblSeed.Text = _game.Seed.ToString();
