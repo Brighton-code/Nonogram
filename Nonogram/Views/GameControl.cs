@@ -51,17 +51,18 @@ namespace Nonogram.Views
 
         private void GameControl_VisibleChanged(object? sender, EventArgs e)
         {
-            if (_game != null)
-            {
+            if (_game == null) return;
+            if (Main.User == null) return;
+
+            if (!Game.Flatten(_game.Marked).SequenceEqual(new Marked[_game.GridSize * _game.GridSize]))
                 StoreStateToHistory();
 
-                _stopwatch.Reset();
-                _timer.Stop();
+            _stopwatch.Reset();
+            _timer.Stop();
 
-                _game = null;
-                _history = null;
-                lblSeed.Text = "Seed";
-            }
+            _game = null;
+            _history = null;
+            lblSeed.Text = "Seed";
         }
 
         private void StoreStateToHistory()
