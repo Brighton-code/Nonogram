@@ -184,10 +184,16 @@ namespace Nonogram.Views
         }
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
-            Invoke(new Action(() =>
+            if (IsHandleCreated)
             {
-                lblStopwatch.Text = _stopwatch.Elapsed.ToString(@"mm\:ss\.ff");
-            }));
+                if (InvokeRequired)
+                    Invoke(new Action(() =>
+                    {
+                        lblStopwatch.Text = _stopwatch.Elapsed.ToString(@"mm\:ss\.ff");
+                    }));
+                else
+                    lblStopwatch.Text = _stopwatch.Elapsed.ToString(@"mm\:ss\.ff");
+            }
         }
 
         private void inGridSize_KeyPress(object sender, KeyPressEventArgs e)
