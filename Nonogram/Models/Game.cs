@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nonogram.Models
 {
@@ -127,15 +119,16 @@ namespace Nonogram.Models
 
         public static T[] Flatten<T>(T[,] arr)
         {
-            T[] result = new T[arr.Length];
-            for (int i = 0; i < arr.GetLength(0); i++)
-            {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    result[i * arr.GetLength(1) + j] = arr[i, j];
-                }
-            }
-            return result;
+            return [.. arr.Cast<T>()];
+            //T[] result = new T[arr.Length];
+            //for (int i = 0; i < arr.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < arr.GetLength(1); j++)
+            //    {
+            //        result[i * arr.GetLength(1) + j] = arr[i, j];
+            //    }
+            //}
+            //return result;
         }
 
         public static byte[] SerializeArray<T>(T arr)
