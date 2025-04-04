@@ -54,7 +54,7 @@ namespace Nonogram.Views
             if (_game == null) return;
             if (Main.User == null) return;
 
-            if (!Game.Flatten(_game.Marked).SequenceEqual(new Marked[_game.GridSize * _game.GridSize]))
+            if (!Game.Flatten(_game.Marked).SequenceEqual(new EMarked[_game.GridSize * _game.GridSize]))
                 StoreStateToHistory();
 
             _stopwatch.Reset();
@@ -108,10 +108,10 @@ namespace Nonogram.Views
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    _game.Marked[row, col] = _game.Marked[row, col] != Marked.Done ? Marked.Done : Marked.None;
+                    _game.Marked[row, col] = _game.Marked[row, col] != EMarked.Done ? EMarked.Done : EMarked.None;
                     break;
                 case MouseButtons.Right:
-                    _game.Marked[row, col] = _game.Marked[row, col] != Marked.Wrong ? Marked.Wrong : Marked.None;
+                    _game.Marked[row, col] = _game.Marked[row, col] != EMarked.Wrong ? EMarked.Wrong : EMarked.None;
                     break;
             }
 
@@ -169,9 +169,9 @@ namespace Nonogram.Views
             // Draw Marked cells
             for (int row = 0; row < _game.Marked.GetLength(0); row++)
                 for (int col = 0; col < _game.Marked.GetLength(1); col++)
-                    if (_game.Marked[row, col] == Marked.Done)
+                    if (_game.Marked[row, col] == EMarked.Done)
                         g.FillRectangle(Brushes.Black, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-                    else if (_game.Marked[row, col] == Marked.Wrong)
+                    else if (_game.Marked[row, col] == EMarked.Wrong)
                         g.DrawString("X", font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
 
             // Draw Horizontal Hints

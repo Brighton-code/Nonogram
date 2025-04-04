@@ -7,7 +7,7 @@ namespace Nonogram.Models
     {
         public int GridSize { get; private set; }
         public int[,] Solution { get; private set; }
-        public Marked[,] Marked { get; set; }
+        public EMarked[,] Marked { get; set; }
         public int Seed { get; private set; }
 
         private int[][] _rowHints;
@@ -49,7 +49,7 @@ namespace Nonogram.Models
             GridSize = size;
             (Solution, Seed) = Grid.GenerateGrid(GridSize);
             (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
-            Marked = new Marked[GridSize, GridSize];
+            Marked = new EMarked[GridSize, GridSize];
         }
 
         public Game(int size, int seed)
@@ -57,7 +57,7 @@ namespace Nonogram.Models
             GridSize = size;
             (Solution, Seed) = Grid.GenerateGrid(GridSize, seed);
             (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
-            Marked = new Marked[GridSize, GridSize];
+            Marked = new EMarked[GridSize, GridSize];
         }
 
         public void ValidateGame()
@@ -65,7 +65,7 @@ namespace Nonogram.Models
             int[,] tmp = new int[GridSize, GridSize];
             for (int row = 0; row < Marked.GetLength(0); row++)
                 for (int col = 0; col < Marked.GetLength(1); col++)
-                    if (Marked[row, col] == Models.Marked.Done)
+                    if (Marked[row, col] == Models.EMarked.Done)
                         tmp[row, col] = 1;
 
             (int[][] hor, int[][] ver) = Grid.CountSumsHorizontal(tmp);
@@ -140,24 +140,32 @@ namespace Nonogram.Models
 
         public void ConvertGameStateTo2Darray(string savedGameState)
         {
-            Marked[] gameState = JsonSerializer.Deserialize<Marked[]>(savedGameState);
+            EMarked[] gameState;
+
+            try
+            {
+                gameState = JsonSerializer.Deserialize<EMarked[]>(savedGameState);
+            }
+            catch { return; } // If you arrive here you corrupted the gameState file. You cheated ;)
 
             if(gameState.Length != GridSize * GridSize) return;
+
+            int enumLength = Enum.GetValues(typeof(EMarked)).Length;
 
             for (int i = 0; i < GridSize; i++)
             {
                 for (int j = 0; j < GridSize; j++)
                 {
-                    Marked[i, j] = gameState[i * GridSize + j];
+                    Marked[i, j] = Enum.IsDefined(typeof(EMarked), gameState[i * GridSize + j]) ? (EMarked)gameState[i * GridSize + j] : 0;
                 }
             }
         }
     }
 
-    public enum Marked
+    public enum EMarked
     {
-        None,
-        Done,
-        Wrong
+        None = 0,
+        Done = 1,
+        Wrong = 2
     }
 }
