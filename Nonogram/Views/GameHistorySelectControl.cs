@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using Nonogram.Database;
+using Nonogram.Models;
 
 namespace Nonogram.Views
 {
@@ -15,6 +18,12 @@ namespace Nonogram.Views
         public GameHistorySelectControl()
         {
             InitializeComponent();
+        }
+
+
+        private void btnLoadGame_Click(object sender, EventArgs e)
+        {
+            Main.ChangeView("game", FindForm().Controls);
         }
     }
 }
