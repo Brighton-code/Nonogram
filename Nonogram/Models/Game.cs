@@ -137,6 +137,21 @@ namespace Nonogram.Models
 
             return Encoding.UTF8.GetBytes(jsonString);
         }
+
+        public void ConvertGameStateTo2Darray(string savedGameState)
+        {
+            Marked[] gameState = JsonSerializer.Deserialize<Marked[]>(savedGameState);
+
+            if(gameState.Length != GridSize * GridSize) return;
+
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    Marked[i, j] = gameState[i * GridSize + j];
+                }
+            }
+        }
     }
 
     public enum Marked

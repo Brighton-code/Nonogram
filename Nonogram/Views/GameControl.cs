@@ -209,6 +209,7 @@ namespace Nonogram.Views
         public void LoadHistory(GameHistory gameHistory)
         {
             _game = new Game(gameHistory.GridSize, gameHistory.Seed);
+            _game.ConvertGameStateTo2Darray(gameHistory.GameState);
             _history = gameHistory;
             _stopwatch = new CustomStopwatch(gameHistory.GameTime);
             _stopwatch.Start();
@@ -216,7 +217,7 @@ namespace Nonogram.Views
             lblSeed.Text = _game.Seed.ToString();
             pnlGame.Refresh();
         }
-
+        
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
             if (IsHandleCreated)
