@@ -104,7 +104,7 @@ namespace Nonogram
             historySelect = new GameHistorySelectControl();
             game = new GameControl();
             scoreboard = new ScoreboardControl();
-            
+
             SuspendLayout();
             ///
             /// menu
@@ -201,6 +201,20 @@ namespace Nonogram
         private void Main_Resize(object sender, EventArgs e)
         {
             Update();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) == DialogResult.No)
+                e.Cancel = true;
+
+            if (Controls.Find("game", true).First().Visible && !e.Cancel)
+                Main.ChangeView("menu", Controls);
+
+            //if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) == DialogResult.No)
+            //{
+            //    e.Cancel = true; // Cancel the close operation
+            //}
         }
     }
 }

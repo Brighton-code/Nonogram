@@ -60,6 +60,7 @@
             Margin = new Padding(2, 1, 2, 1);
             Name = "Main";
             Text = "Nonogram Game";
+            FormClosing += Main_FormClosing;
             ResumeLayout(false);
         }
 
