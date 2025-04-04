@@ -9,13 +9,7 @@ namespace Nonogram.Models
 {
     public class CustomStopwatch : Stopwatch
     {
-        public TimeSpan StartOffset { get; private set; }
-
-
-        public CustomStopwatch(TimeSpan startOffset)
-        {
-            StartOffset = startOffset;
-        }
+        public TimeSpan StartOffset { get; set; } = TimeSpan.Zero;
 
         public new long ElapsedMilliseconds
         {
