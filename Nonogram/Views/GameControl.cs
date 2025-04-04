@@ -46,12 +46,17 @@ namespace Nonogram.Views
                 null, pnlGame, [true]);
         }
 
+        private bool MarkedIsChanged()
+        {
+            return Game.Flatten(_game.Marked).SequenceEqual(new EMarked[_game.GridSize * _game.GridSize]);
+        }
+
         private void GameControl_VisibleChanged(object? sender, EventArgs e)
         {
             if (_game == null) return;
             if (Main.User == null) return;
 
-            if (!Game.Flatten(_game.Marked).SequenceEqual(new EMarked[_game.GridSize * _game.GridSize]))
+            if (!MarkedIsChanged())
                 StoreStateToHistory();
 
             _game.Stopwatch.Reset();
