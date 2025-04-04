@@ -73,6 +73,7 @@ namespace Nonogram.Views
 
             _history.GameState = _game.EncodeMarked();
             _history.GameTime = _stopwatch.Elapsed;
+            _history.UpdatedAt = DateTime.Now;
 
             if (_game.Complete)
                 _history.CompletedAt = DateTime.Now;
