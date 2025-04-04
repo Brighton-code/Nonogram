@@ -28,6 +28,8 @@ namespace Nonogram.Views
             if (!Visible) return;
 
             cbGameHistory.Items.Clear();
+            cbGameHistory.SelectedIndex = -1;
+
             userHistory = Main.User.History.Where(h => h.CompletedAt == null).ToList();
 
             // Display available unfinished games
@@ -41,9 +43,11 @@ namespace Nonogram.Views
         {
             GameControl gc = (GameControl)FindForm().Controls.Find("game", true).FirstOrDefault();
 
+            int a = cbGameHistory.SelectedIndex;
+
             if (gc != null) 
             {
-                
+                gc.LoadHistory(userHistory[cbGameHistory.SelectedIndex]);
             }
 
             Main.ChangeView("game", FindForm().Controls);

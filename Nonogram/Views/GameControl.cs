@@ -205,6 +205,18 @@ namespace Nonogram.Views
             lblSeed.Text = _game.Seed.ToString();
             //MessageBox.Show(size.ToString());
         }
+
+        public void LoadHistory(GameHistory gameHistory)
+        {
+            _game = new Game(gameHistory.GridSize, gameHistory.Seed);
+            _history = gameHistory;
+            _stopwatch = new CustomStopwatch(gameHistory.GameTime);
+            _stopwatch.Start();
+            _timer.Start();
+            lblSeed.Text = _game.Seed.ToString();
+            pnlGame.Refresh();
+        }
+
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
             if (IsHandleCreated)
