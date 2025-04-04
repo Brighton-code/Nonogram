@@ -11,6 +11,7 @@ namespace Nonogram
         {
             InitializeComponent();
             InitializeView();
+            CenterToScreen();
 
             Main.ChangeNavUser(Controls);
             Main.ChangeView("menu", Controls);
