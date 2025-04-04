@@ -21,6 +21,7 @@ namespace Nonogram.Views
         private Game _game;
         private Stopwatch _stopwatch;
         private System.Timers.Timer _timer;
+        private GameHistory _history;
 
         FontFamily fontFamily = new("Arial");
         Font font;
@@ -29,6 +30,8 @@ namespace Nonogram.Views
         public GameControl()
         {
             InitializeComponent();
+
+            VisibleChanged += GameControl_VisibleChanged;
 
             pnlGame.Paint += PnlGame_Paint;
             pnlGame.MouseClick += PnlGame_MouseClick;
@@ -44,6 +47,37 @@ namespace Nonogram.Views
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
                 null, pnlGame, [true]);
+        }
+
+        private void GameControl_VisibleChanged(object? sender, EventArgs e)
+        {
+            if (_game != null)
+            {
+                _stopwatch.Stop();
+                _timer.Stop();
+            }
+        }
+
+        private void StoreStateToHistory()
+        {
+            if (_game == null) return;
+            if (Main.User == null) return;
+
+            _history.GameState = _game.EncodeMarked();
+            _history.GameTime = _stopwatch.Elapsed;
+
+            if (_game.Complete)
+                _history.CompletedAt = DateTime.Now;
+
+            int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
+
+            if (indx != -1)
+                Main.User.History[indx] = _history;
+            else
+                Main.User.History.Add(_history);
+
+            JsonUserDatabase db = new JsonUserDatabase();
+            db.SaveToUser(Main.User, "../../../Database/Users.json");
         }
 
         private void PnlGame_Resize(object? sender, EventArgs e)
@@ -76,35 +110,12 @@ namespace Nonogram.Views
             pnlGame.Invalidate();
 
             _game.ValidateGame();
+            StoreStateToHistory();
             if (_game.Complete)
             {
                 _stopwatch.Stop();
                 _timer.Stop();
                 MessageBox.Show("Game is complete");
-
-                int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed);
-
-                if (indx != -1)
-                {
-                    Main.User.History[indx].GameState = _game.EncodeMarked();
-                    Main.User.History[indx].CompletedAt = DateTime.Now;
-                    Main.User.History[indx].CreatedAt = DateTime.Now;
-                    //Main.User.History[indx].UpdatedAt = DateTime.Now;
-                }
-                else
-                {
-                    GameHistory history = new GameHistory();
-                    history.Seed = _game.Seed;
-                    history.GridSize = _game.GridSize;
-                    history.GameState = _game.EncodeMarked();
-                    history.CompletedAt = DateTime.Now;
-                    history.CreatedAt = DateTime.Now;
-                    //history.UpdatedAt = DateTime.Now;
-                    Main.User.History.Add(history);
-                }
-
-                JsonUserDatabase db = new JsonUserDatabase();
-                db.SaveToUser(Main.User, "../../../Database/Users.json");
             }
         }
 
@@ -177,6 +188,11 @@ namespace Nonogram.Views
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
+            _history = new GameHistory();
+            _history.Seed = _game.Seed;
+            _history.GridSize = _game.GridSize;
+            _history.CreatedAt = DateTime.Now;
+
             _timer.Start();
             _stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
@@ -212,6 +228,7 @@ namespace Nonogram.Views
         {
             showSolution = !showSolution;
             pnlGame.Invalidate();
+            
         }
     }
 }
