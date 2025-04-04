@@ -85,7 +85,9 @@ namespace Nonogram.Models
 
         public string EncodeMarked()
         {
-            return Base64EncodeArr(Flatten(Marked));
+            string jsonString = JsonSerializer.Serialize(Flatten(Marked));
+            return jsonString;
+            //return Base64EncodeArr(Flatten(Marked));
         }
 
         static string Base64EncodeArr<T>(T arr)
