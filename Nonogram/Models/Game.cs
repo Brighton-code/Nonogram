@@ -43,6 +43,7 @@ namespace Nonogram.Models
         public Point GridStart;
         public int GridArea;
         public bool Complete { get; private set; }
+        public CustomStopwatch Stopwatch { get; private set; }
 
         public Game(int size)
         {
@@ -50,6 +51,7 @@ namespace Nonogram.Models
             (Solution, Seed) = Grid.GenerateGrid(GridSize);
             (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
             Marked = new EMarked[GridSize, GridSize];
+            Stopwatch = new CustomStopwatch();
         }
 
         public Game(int size, int seed)
@@ -58,6 +60,7 @@ namespace Nonogram.Models
             (Solution, Seed) = Grid.GenerateGrid(GridSize, seed);
             (RowHints, ColHints) = Grid.CountSumsHorizontal(Solution);
             Marked = new EMarked[GridSize, GridSize];
+            Stopwatch = new CustomStopwatch();
         }
 
         public void ValidateGame()
