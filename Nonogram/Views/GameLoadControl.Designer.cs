@@ -55,6 +55,7 @@
             btnLoadGame.TabIndex = 1;
             btnLoadGame.Text = "Load Game";
             btnLoadGame.UseVisualStyleBackColor = true;
+            btnLoadGame.Click += btnLoadGame_Click;
             // 
             // lbPickGame
             // 
@@ -78,12 +79,12 @@
             pnlLayout.Size = new Size(500, 500);
             pnlLayout.TabIndex = 3;
             // 
-            // LoadControl
+            // GameLoadControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pnlLayout);
-            Name = "LoadControl";
+            Name = "GameLoadControl";
             Size = new Size(500, 500);
             pnlLayout.ResumeLayout(false);
             pnlLayout.PerformLayout();

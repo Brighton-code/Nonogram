@@ -100,6 +100,7 @@ namespace Nonogram
             login = new LoginControl();
             register = new RegisterControl();
             load = new GameLoadControl();
+            historySelect = new GameHistorySelectControl();
             game = new GameControl();
             scoreboard = new ScoreboardControl();
             
@@ -145,6 +146,16 @@ namespace Nonogram
             load.Visible = false;
             load.Tag = new List<TagType>() { TagType.Auth };
             ///
+            /// History Select
+            /// 
+            historySelect.Dock = DockStyle.Fill;
+            historySelect.Location = new Point(0, 0);
+            historySelect.Margin = new Padding(0);
+            historySelect.Name = "historySelect";
+            historySelect.TabIndex = 0;
+            historySelect.Visible = false;
+            historySelect.Tag = new List<TagType>() { TagType.Auth };
+            ///
             /// Game
             /// 
             game.Dock = DockStyle.Fill;
@@ -171,6 +182,7 @@ namespace Nonogram
             pnlBody.Controls.Add(login);
             pnlBody.Controls.Add(register);
             pnlBody.Controls.Add(load);
+            pnlBody.Controls.Add(historySelect);
             pnlBody.Controls.Add(game);
             pnlBody.Controls.Add(scoreboard);
             ResumeLayout(false);
@@ -180,6 +192,7 @@ namespace Nonogram
         LoginControl login;
         RegisterControl register;
         GameLoadControl load;
+        GameHistorySelectControl historySelect;
         GameControl game;
         ScoreboardControl scoreboard;
         #endregion

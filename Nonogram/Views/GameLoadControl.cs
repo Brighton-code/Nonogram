@@ -21,5 +21,18 @@ namespace Nonogram.Views
         {
             Main.ChangeView("game", FindForm().Controls);
         }
+
+        private void btnLoadGame_Click(object sender, EventArgs e)
+        {
+            // Check if history exists
+            if (Main.User.History.Count == 0 || Main.User.History.Where(h => h.CompletedAt == null).Count() == 0)
+            {
+                MessageBox.Show("No available game history, create a new game instead!");
+            }
+            else
+            {
+                Main.ChangeView("historySelect", FindForm().Controls);
+            }
+        }
     }
 }
