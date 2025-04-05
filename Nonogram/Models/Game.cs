@@ -172,7 +172,7 @@ namespace Nonogram.Models
             {
                 for (int j = 0; j < GridSize; j++)
                 {
-                    //Skip if user used X to mark a tile that is supposed to be empty in the solution
+                    //Skip if user used X to mark a tile that is be empty in the solution
                     if (Marked[i, j] == EMarked.Wrong && (EMarked)Solution[i, j] == EMarked.None)
                         continue;
 
