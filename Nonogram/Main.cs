@@ -1,6 +1,7 @@
 using Nonogram.Views;
 using Nonogram.Models;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace Nonogram
 {
@@ -13,6 +14,10 @@ namespace Nonogram
             InitializeView();
             CenterToScreen();
 
+            BackColorChanged += (object? sender, EventArgs e) => Refresh();
+
+            typeof(NavbarControl).GetMethod("CbTheme_CheckedChanged", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(Navbar, [null, null]);
+            
             Main.ChangeNavUser(Controls);
             Main.ChangeView("menu", Controls);
             //MessageBox.Show($"{Width}, {Height}");
@@ -92,6 +97,37 @@ namespace Nonogram
                     }
                 }
             }
+        }
+
+        public static List<Button> GetAllButtons(Control parent)
+        {
+            List<Button> buttons = new List<Button>();
+            foreach (Control control in parent.Controls)
+            {
+                // Check if the control is a Button
+                if (control is Button button)
+                {
+                    buttons.Add(button);
+                }
+
+                // Recursively check child controls (if any)
+                if (control.HasChildren)
+                {
+                    buttons.AddRange(GetAllButtons(control));
+                }
+            }
+            return buttons;
+        }
+
+        public static Color GetComplementaryColor(Color color)
+        {
+            // Invert each RGB component
+            int r = 255 - color.R;
+            int g = 255 - color.G;
+            int b = 255 - color.B;
+
+            // Return the complementary color
+            return Color.FromArgb(r, g, b);
         }
 
         #region Views code

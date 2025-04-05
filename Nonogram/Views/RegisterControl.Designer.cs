@@ -41,7 +41,6 @@
             // pnlLayout
             // 
             pnlLayout.Anchor = AnchorStyles.None;
-            pnlLayout.BackColor = SystemColors.Control;
             pnlLayout.Controls.Add(btnLogin);
             pnlLayout.Controls.Add(btnRegister);
             pnlLayout.Controls.Add(tbPassword2);
