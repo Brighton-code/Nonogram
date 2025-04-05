@@ -226,6 +226,7 @@ namespace Nonogram.Views
             _game.Stopwatch.Start();
             _timer.Start();
             lblSeed.Text = _game.Seed.ToString();
+            lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
             pnlGame.Refresh();
         }
 
@@ -266,6 +267,8 @@ namespace Nonogram.Views
         private void btnHint_Click(object sender, EventArgs e)
         {
             Point hint = _game.GetPossibleHints().ElementAtOrDefault(Random.Shared.Next(0, _game.GetPossibleHints().Count));
+            _history.HintsRequested++;
+            lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
             MessageBox.Show($"The tile on row {hint.X+1} and column {hint.Y+1} is current incorrect!");
         }
     }
