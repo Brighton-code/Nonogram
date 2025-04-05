@@ -159,10 +159,11 @@
             // 
             // btnHint
             // 
+            btnHint.Anchor = AnchorStyles.None;
             btnHint.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHint.Location = new Point(3, 50);
             btnHint.Name = "btnHint";
-            btnHint.Size = new Size(108, 38);
+            btnHint.Size = new Size(108, 41);
             btnHint.TabIndex = 5;
             btnHint.Text = "Hint";
             btnHint.UseVisualStyleBackColor = true;
