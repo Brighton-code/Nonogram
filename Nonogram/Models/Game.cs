@@ -172,7 +172,11 @@ namespace Nonogram.Models
             {
                 for (int j = 0; j < GridSize; j++)
                 {
-                    if ((int)Marked[i,j] != Solution[i,j])
+                    //Skip if user used X to mark a tile that is supposed to be empty in the solution
+                    if (Marked[i, j] == EMarked.Wrong && (EMarked)Solution[i, j] == EMarked.None)
+                        continue;
+
+                    if (Marked[i,j] != (EMarked)Solution[i,j])
                         hints.Add(new Point(i, j));
                 }
             }
