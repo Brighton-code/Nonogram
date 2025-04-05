@@ -266,6 +266,9 @@ namespace Nonogram.Views
 
         private void btnHint_Click(object sender, EventArgs e)
         {
+            if (_game == null)
+                return;
+
             List<Point> hints = _game.GetPossibleHints();
             Point hint = hints.ElementAtOrDefault(Random.Shared.Next(0, hints.Count));
 
