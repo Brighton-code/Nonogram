@@ -34,6 +34,7 @@
             // 
             // pnlBody
             // 
+            pnlBody.BackColor = Color.Transparent;
             pnlBody.Dock = DockStyle.Fill;
             pnlBody.Location = new Point(0, 100);
             pnlBody.Margin = new Padding(0);
@@ -43,6 +44,7 @@
             // 
             // Navbar
             // 
+            Navbar.BackColor = Color.Transparent;
             Navbar.Dock = DockStyle.Top;
             Navbar.Location = new Point(0, 0);
             Navbar.Margin = new Padding(0);
@@ -53,6 +55,7 @@
             // Main
             // 
             AutoScaleMode = AutoScaleMode.None;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(784, 761);
             Controls.Add(pnlBody);
             Controls.Add(Navbar);

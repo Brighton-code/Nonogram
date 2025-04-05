@@ -15,6 +15,25 @@ namespace Nonogram.Views
         public NavbarControl()
         {
             InitializeComponent();
+
+            cbTheme.CheckedChanged += CbTheme_CheckedChanged;
+        }
+
+        private void CbTheme_CheckedChanged(object? sender, EventArgs e)
+        {
+            Form form = FindForm();
+            List<Button> buttons = Main.GetAllButtons(form);
+
+            Color color = cbTheme.Checked ? ColorTranslator.FromHtml("#2D2D30") : ColorTranslator.FromHtml("#F0F0F0");
+            Color colorCom = Main.GetComplementaryColor(color);
+            form.BackColor = color;
+
+            foreach (Button button in buttons)
+            {
+                button.BackColor = color;
+                button.ForeColor = colorCom;
+            }
+
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
