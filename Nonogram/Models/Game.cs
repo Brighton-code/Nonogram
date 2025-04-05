@@ -163,6 +163,26 @@ namespace Nonogram.Models
                 }
             }
         }
+
+        public List<Point> GetPossibleHints()
+        {
+            List<Point> hints = new List<Point>();
+
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    //Skip if user used X to mark a tile that is empty in the solution
+                    if (Marked[i, j] == EMarked.Wrong && (EMarked)Solution[i, j] == EMarked.None)
+                        continue;
+
+                    if (Marked[i,j] != (EMarked)Solution[i,j])
+                        hints.Add(new Point(i, j));
+                }
+            }
+
+            return hints;
+        }
     }
 
     public enum EMarked

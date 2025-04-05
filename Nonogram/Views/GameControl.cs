@@ -180,7 +180,7 @@ namespace Nonogram.Views
                         }
                         else
                             if (_game.Marked[row, col] == EMarked.Done)
-                                g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+                            g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
 #endif
 
             // Draw Horizontal Hints
@@ -226,9 +226,10 @@ namespace Nonogram.Views
             _game.Stopwatch.Start();
             _timer.Start();
             lblSeed.Text = _game.Seed.ToString();
+            lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
             pnlGame.Refresh();
         }
-        
+
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
             if (IsHandleCreated)
@@ -260,7 +261,21 @@ namespace Nonogram.Views
         {
             showSolution = !showSolution;
             pnlGame.Invalidate();
-            
+
+        }
+
+        private void btnHint_Click(object sender, EventArgs e)
+        {
+            if (_game == null)
+                return;
+
+            List<Point> hints = _game.GetPossibleHints();
+            Point hint = hints.ElementAtOrDefault(Random.Shared.Next(0, hints.Count));
+
+            _history.HintsRequested++;
+            StoreStateToHistory();
+            lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
+            MessageBox.Show($"The tile on row {hint.X+1} and column {hint.Y+1} is current incorrect!");
         }
     }
 }
