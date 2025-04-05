@@ -38,6 +38,7 @@
             lblStopwatch = new Label();
             lblSeed = new Label();
             pnlGame = new Panel();
+            btnHint = new Button();
             pnlGameBtns.SuspendLayout();
             pnlSizeChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)inGridSize).BeginInit();
@@ -128,14 +129,16 @@
             pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlData.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             pnlData.Controls.Add(btnSolution, 0, 0);
-            pnlData.Controls.Add(lblStopwatch, 0, 1);
             pnlData.Controls.Add(lblSeed, 1, 0);
+            pnlData.Controls.Add(lblStopwatch, 1, 1);
+            pnlData.Controls.Add(btnHint, 0, 1);
             pnlData.Dock = DockStyle.Fill;
             pnlData.Location = new Point(253, 3);
             pnlData.Name = "pnlData";
             pnlData.RowCount = 2;
             pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             pnlData.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlData.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             pnlData.Size = new Size(244, 94);
             pnlData.TabIndex = 2;
             // 
@@ -155,9 +158,8 @@
             // 
             lblStopwatch.Anchor = AnchorStyles.None;
             lblStopwatch.AutoSize = true;
-            pnlData.SetColumnSpan(lblStopwatch, 2);
             lblStopwatch.Font = new Font("Segoe UI", 14F);
-            lblStopwatch.Location = new Point(73, 58);
+            lblStopwatch.Location = new Point(134, 58);
             lblStopwatch.Name = "lblStopwatch";
             lblStopwatch.Size = new Size(98, 25);
             lblStopwatch.TabIndex = 3;
@@ -182,6 +184,17 @@
             pnlGame.Name = "pnlGame";
             pnlGame.Size = new Size(500, 400);
             pnlGame.TabIndex = 1;
+            // 
+            // btnHint
+            // 
+            btnHint.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHint.Location = new Point(3, 50);
+            btnHint.Name = "btnHint";
+            btnHint.Size = new Size(116, 38);
+            btnHint.TabIndex = 5;
+            btnHint.Text = "Give Hint";
+            btnHint.UseVisualStyleBackColor = true;
+            btnHint.Click += btnHint_Click;
             // 
             // GameControl
             // 
@@ -213,5 +226,6 @@
         private TableLayoutPanel pnlData;
         private Label lblStopwatch;
         private Label lblSeed;
+        private Button btnHint;
     }
 }

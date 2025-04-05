@@ -180,7 +180,7 @@ namespace Nonogram.Views
                         }
                         else
                             if (_game.Marked[row, col] == EMarked.Done)
-                                g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
+                            g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
 #endif
 
             // Draw Horizontal Hints
@@ -228,7 +228,7 @@ namespace Nonogram.Views
             lblSeed.Text = _game.Seed.ToString();
             pnlGame.Refresh();
         }
-        
+
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
             if (IsHandleCreated)
@@ -260,7 +260,12 @@ namespace Nonogram.Views
         {
             showSolution = !showSolution;
             pnlGame.Invalidate();
-            
+
+        }
+
+        private void btnHint_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
