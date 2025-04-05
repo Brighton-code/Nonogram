@@ -30,7 +30,7 @@ namespace Nonogram.Views
             {
                 foreach (GameHistory history in user.History)
                 {
-                    dataGrid.Rows.Add([user.Name, history.GridSize, history.Seed, history.GameTime, history.CompletedAt, history.CreatedAt]);
+                    dataGrid.Rows.Add([user.Name, history.GridSize, history.Seed, history.HintsRequested ,history.GameTime, history.CompletedAt, history.CreatedAt]);
                 }
             }
         }
