@@ -266,8 +266,11 @@ namespace Nonogram.Views
 
         private void btnHint_Click(object sender, EventArgs e)
         {
-            Point hint = _game.GetPossibleHints().ElementAtOrDefault(Random.Shared.Next(0, _game.GetPossibleHints().Count));
+            List<Point> hints = _game.GetPossibleHints();
+            Point hint = hints.ElementAtOrDefault(Random.Shared.Next(0, hints.Count));
+
             _history.HintsRequested++;
+            StoreStateToHistory();
             lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
             MessageBox.Show($"The tile on row {hint.X+1} and column {hint.Y+1} is current incorrect!");
         }
