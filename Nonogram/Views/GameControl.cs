@@ -265,7 +265,7 @@ namespace Nonogram.Views
 
         private void btnHint_Click(object sender, EventArgs e)
         {
-
+            bool[,] a = _game.GetPossibleHints();
         }
     }
 }

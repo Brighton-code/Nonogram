@@ -163,6 +163,24 @@ namespace Nonogram.Models
                 }
             }
         }
+
+        public bool[,] GetPossibleHints()
+        {
+            bool[,] hints = new bool[GridSize, GridSize];
+
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    int a = (int)Marked[i, j];
+                    int b = Solution[i, j];
+                    if ((int)Marked[i,j] != Solution[i,j])
+                        hints[i,j] = true;
+                }
+            }
+
+            return hints;
+        }
     }
 
     public enum EMarked
