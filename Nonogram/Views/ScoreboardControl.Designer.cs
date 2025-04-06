@@ -40,7 +40,6 @@
             cbSelectScoreboard = new ComboBox();
             pnlScoreboardLayout = new TableLayoutPanel();
             lbPosition1 = new Label();
-            lblScoreboard = new Label();
             lbPosition2 = new Label();
             lbPosition3 = new Label();
             lbPosition4 = new Label();
@@ -50,6 +49,7 @@
             lbPosition8 = new Label();
             lbPosition9 = new Label();
             lbPosition10 = new Label();
+            lblScoreboard = new Label();
             pnlLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
             pnlScoreboardLayout.SuspendLayout();
@@ -57,11 +57,11 @@
             // 
             // pnlLayout
             // 
-            pnlLayout.Anchor = AnchorStyles.None;
             pnlLayout.Controls.Add(dataGrid);
             pnlLayout.Controls.Add(cbSelectScoreboard);
             pnlLayout.Controls.Add(pnlScoreboardLayout);
             pnlLayout.Controls.Add(lblScoreboard);
+            pnlLayout.Dock = DockStyle.Fill;
             pnlLayout.Location = new Point(0, 0);
             pnlLayout.Margin = new Padding(0);
             pnlLayout.Name = "pnlLayout";
@@ -74,7 +74,7 @@
             dataGrid.AllowUserToDeleteRows = false;
             dataGrid.AllowUserToOrderColumns = true;
             dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, colHints, ColTime, ColCompletedAt, ColCreatedAt });
-            dataGrid.Location = new Point(0, 0);
+            dataGrid.Location = new Point(10, 14);
             dataGrid.Margin = new Padding(0);
             dataGrid.Name = "dataGrid";
             dataGrid.ReadOnly = true;
@@ -126,6 +126,7 @@
             // 
             // cbSelectScoreboard
             // 
+            cbSelectScoreboard.Anchor = AnchorStyles.None;
             cbSelectScoreboard.FormattingEnabled = true;
             cbSelectScoreboard.Location = new Point(112, 70);
             cbSelectScoreboard.Name = "cbSelectScoreboard";
@@ -134,11 +135,11 @@
             // 
             // pnlScoreboardLayout
             // 
-            pnlScoreboardLayout.Anchor = AnchorStyles.None;
+            pnlScoreboardLayout.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pnlScoreboardLayout.ColumnCount = 3;
-            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
-            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.498475F));
+            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 83.00305F));
+            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.498475F));
             pnlScoreboardLayout.Controls.Add(lbPosition1, 1, 0);
             pnlScoreboardLayout.Controls.Add(lbPosition2, 1, 1);
             pnlScoreboardLayout.Controls.Add(lbPosition3, 1, 2);
@@ -169,11 +170,91 @@
             // 
             lbPosition1.Anchor = AnchorStyles.None;
             lbPosition1.AutoSize = true;
-            lbPosition1.Location = new Point(243, 12);
+            lbPosition1.Location = new Point(249, 12);
             lbPosition1.Name = "lbPosition1";
-            lbPosition1.Size = new Size(13, 15);
+            lbPosition1.Size = new Size(0, 15);
             lbPosition1.TabIndex = 0;
-            lbPosition1.Text = "1";
+            // 
+            // lbPosition2
+            // 
+            lbPosition2.Anchor = AnchorStyles.None;
+            lbPosition2.AutoSize = true;
+            lbPosition2.Location = new Point(249, 51);
+            lbPosition2.Name = "lbPosition2";
+            lbPosition2.Size = new Size(0, 15);
+            lbPosition2.TabIndex = 1;
+            // 
+            // lbPosition3
+            // 
+            lbPosition3.Anchor = AnchorStyles.None;
+            lbPosition3.AutoSize = true;
+            lbPosition3.Location = new Point(249, 90);
+            lbPosition3.Name = "lbPosition3";
+            lbPosition3.Size = new Size(0, 15);
+            lbPosition3.TabIndex = 2;
+            // 
+            // lbPosition4
+            // 
+            lbPosition4.Anchor = AnchorStyles.None;
+            lbPosition4.AutoSize = true;
+            lbPosition4.Location = new Point(249, 130);
+            lbPosition4.Name = "lbPosition4";
+            lbPosition4.Size = new Size(0, 15);
+            lbPosition4.TabIndex = 3;
+            // 
+            // lbPosition5
+            // 
+            lbPosition5.Anchor = AnchorStyles.None;
+            lbPosition5.AutoSize = true;
+            lbPosition5.Location = new Point(249, 170);
+            lbPosition5.Name = "lbPosition5";
+            lbPosition5.Size = new Size(0, 15);
+            lbPosition5.TabIndex = 4;
+            // 
+            // lbPosition6
+            // 
+            lbPosition6.Anchor = AnchorStyles.None;
+            lbPosition6.AutoSize = true;
+            lbPosition6.Location = new Point(249, 210);
+            lbPosition6.Name = "lbPosition6";
+            lbPosition6.Size = new Size(0, 15);
+            lbPosition6.TabIndex = 5;
+            // 
+            // lbPosition7
+            // 
+            lbPosition7.Anchor = AnchorStyles.None;
+            lbPosition7.AutoSize = true;
+            lbPosition7.Location = new Point(249, 250);
+            lbPosition7.Name = "lbPosition7";
+            lbPosition7.Size = new Size(0, 15);
+            lbPosition7.TabIndex = 6;
+            // 
+            // lbPosition8
+            // 
+            lbPosition8.Anchor = AnchorStyles.None;
+            lbPosition8.AutoSize = true;
+            lbPosition8.Location = new Point(249, 290);
+            lbPosition8.Name = "lbPosition8";
+            lbPosition8.Size = new Size(0, 15);
+            lbPosition8.TabIndex = 7;
+            // 
+            // lbPosition9
+            // 
+            lbPosition9.Anchor = AnchorStyles.None;
+            lbPosition9.AutoSize = true;
+            lbPosition9.Location = new Point(249, 330);
+            lbPosition9.Name = "lbPosition9";
+            lbPosition9.Size = new Size(0, 15);
+            lbPosition9.TabIndex = 8;
+            // 
+            // lbPosition10
+            // 
+            lbPosition10.Anchor = AnchorStyles.None;
+            lbPosition10.AutoSize = true;
+            lbPosition10.Location = new Point(249, 372);
+            lbPosition10.Name = "lbPosition10";
+            lbPosition10.Size = new Size(0, 15);
+            lbPosition10.TabIndex = 9;
             // 
             // lblScoreboard
             // 
@@ -186,96 +267,6 @@
             lblScoreboard.Size = new Size(331, 74);
             lblScoreboard.TabIndex = 1;
             lblScoreboard.Text = "Scoreboard";
-            // 
-            // lbPosition2
-            // 
-            lbPosition2.Anchor = AnchorStyles.None;
-            lbPosition2.AutoSize = true;
-            lbPosition2.Location = new Point(243, 51);
-            lbPosition2.Name = "lbPosition2";
-            lbPosition2.Size = new Size(13, 15);
-            lbPosition2.TabIndex = 1;
-            lbPosition2.Text = "2";
-            // 
-            // lbPosition3
-            // 
-            lbPosition3.Anchor = AnchorStyles.None;
-            lbPosition3.AutoSize = true;
-            lbPosition3.Location = new Point(243, 90);
-            lbPosition3.Name = "lbPosition3";
-            lbPosition3.Size = new Size(13, 15);
-            lbPosition3.TabIndex = 2;
-            lbPosition3.Text = "3";
-            // 
-            // lbPosition4
-            // 
-            lbPosition4.Anchor = AnchorStyles.None;
-            lbPosition4.AutoSize = true;
-            lbPosition4.Location = new Point(243, 130);
-            lbPosition4.Name = "lbPosition4";
-            lbPosition4.Size = new Size(13, 15);
-            lbPosition4.TabIndex = 3;
-            lbPosition4.Text = "4";
-            // 
-            // lbPosition5
-            // 
-            lbPosition5.Anchor = AnchorStyles.None;
-            lbPosition5.AutoSize = true;
-            lbPosition5.Location = new Point(243, 170);
-            lbPosition5.Name = "lbPosition5";
-            lbPosition5.Size = new Size(13, 15);
-            lbPosition5.TabIndex = 4;
-            lbPosition5.Text = "5";
-            // 
-            // lbPosition6
-            // 
-            lbPosition6.Anchor = AnchorStyles.None;
-            lbPosition6.AutoSize = true;
-            lbPosition6.Location = new Point(243, 210);
-            lbPosition6.Name = "lbPosition6";
-            lbPosition6.Size = new Size(13, 15);
-            lbPosition6.TabIndex = 5;
-            lbPosition6.Text = "6";
-            // 
-            // lbPosition7
-            // 
-            lbPosition7.Anchor = AnchorStyles.None;
-            lbPosition7.AutoSize = true;
-            lbPosition7.Location = new Point(243, 250);
-            lbPosition7.Name = "lbPosition7";
-            lbPosition7.Size = new Size(13, 15);
-            lbPosition7.TabIndex = 6;
-            lbPosition7.Text = "7";
-            // 
-            // lbPosition8
-            // 
-            lbPosition8.Anchor = AnchorStyles.None;
-            lbPosition8.AutoSize = true;
-            lbPosition8.Location = new Point(243, 290);
-            lbPosition8.Name = "lbPosition8";
-            lbPosition8.Size = new Size(13, 15);
-            lbPosition8.TabIndex = 7;
-            lbPosition8.Text = "8";
-            // 
-            // lbPosition9
-            // 
-            lbPosition9.Anchor = AnchorStyles.None;
-            lbPosition9.AutoSize = true;
-            lbPosition9.Location = new Point(243, 330);
-            lbPosition9.Name = "lbPosition9";
-            lbPosition9.Size = new Size(13, 15);
-            lbPosition9.TabIndex = 8;
-            lbPosition9.Text = "9";
-            // 
-            // lbPosition10
-            // 
-            lbPosition10.Anchor = AnchorStyles.None;
-            lbPosition10.AutoSize = true;
-            lbPosition10.Location = new Point(240, 372);
-            lbPosition10.Name = "lbPosition10";
-            lbPosition10.Size = new Size(19, 15);
-            lbPosition10.TabIndex = 9;
-            lbPosition10.Text = "10";
             // 
             // ScoreboardControl
             // 
