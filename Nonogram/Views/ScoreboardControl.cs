@@ -102,9 +102,9 @@ namespace Nonogram.Views
             {
                 Label lb = (Label)pnlScoreboardLayout.Controls.Find($"lbPosition{i+1}", false).First();
                 lb.Text = 
-                    $"{i+1}. Name: {gameHistories[i].user} " +
-                    $"Game time: {gameHistories[i].history.GameTime.ToString(@"mm\:ss\.fff")} " +
-                    $"Hints: {gameHistories[i].history.HintsRequested} " +
+                    $"{i+1}. Name: {gameHistories[i].user} | " +
+                    $"Game time: {gameHistories[i].history.GameTime.ToString(@"mm\:ss\.fff")} | " +
+                    $"Hints: {gameHistories[i].history.HintsRequested} | " +
                     $"Completed at: {gameHistories[i].history.CompletedAt}";
             }
         }
