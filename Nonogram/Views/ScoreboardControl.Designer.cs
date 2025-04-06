@@ -29,14 +29,6 @@
         private void InitializeComponent()
         {
             pnlLayout = new Panel();
-            dataGrid = new DataGridView();
-            ColUser = new DataGridViewTextBoxColumn();
-            ColSize = new DataGridViewTextBoxColumn();
-            ColSeed = new DataGridViewTextBoxColumn();
-            colHints = new DataGridViewTextBoxColumn();
-            ColTime = new DataGridViewTextBoxColumn();
-            ColCompletedAt = new DataGridViewTextBoxColumn();
-            ColCreatedAt = new DataGridViewTextBoxColumn();
             cbSelectScoreboard = new ComboBox();
             pnlScoreboardLayout = new TableLayoutPanel();
             lbPosition1 = new Label();
@@ -51,13 +43,11 @@
             lbPosition10 = new Label();
             lblScoreboard = new Label();
             pnlLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
             pnlScoreboardLayout.SuspendLayout();
             SuspendLayout();
             // 
             // pnlLayout
             // 
-            pnlLayout.Controls.Add(dataGrid);
             pnlLayout.Controls.Add(cbSelectScoreboard);
             pnlLayout.Controls.Add(pnlScoreboardLayout);
             pnlLayout.Controls.Add(lblScoreboard);
@@ -67,62 +57,6 @@
             pnlLayout.Name = "pnlLayout";
             pnlLayout.Size = new Size(500, 500);
             pnlLayout.TabIndex = 0;
-            // 
-            // dataGrid
-            // 
-            dataGrid.AllowUserToAddRows = false;
-            dataGrid.AllowUserToDeleteRows = false;
-            dataGrid.AllowUserToOrderColumns = true;
-            dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, colHints, ColTime, ColCompletedAt, ColCreatedAt });
-            dataGrid.Location = new Point(10, 14);
-            dataGrid.Margin = new Padding(0);
-            dataGrid.Name = "dataGrid";
-            dataGrid.ReadOnly = true;
-            dataGrid.RowHeadersWidth = 24;
-            dataGrid.Size = new Size(40, 30);
-            dataGrid.TabIndex = 2;
-            // 
-            // ColUser
-            // 
-            ColUser.HeaderText = "User";
-            ColUser.Name = "ColUser";
-            ColUser.ReadOnly = true;
-            // 
-            // ColSize
-            // 
-            ColSize.HeaderText = "Size";
-            ColSize.Name = "ColSize";
-            ColSize.ReadOnly = true;
-            // 
-            // ColSeed
-            // 
-            ColSeed.HeaderText = "Seed";
-            ColSeed.Name = "ColSeed";
-            ColSeed.ReadOnly = true;
-            // 
-            // colHints
-            // 
-            colHints.HeaderText = "Hints";
-            colHints.Name = "colHints";
-            colHints.ReadOnly = true;
-            // 
-            // ColTime
-            // 
-            ColTime.HeaderText = "Time";
-            ColTime.Name = "ColTime";
-            ColTime.ReadOnly = true;
-            // 
-            // ColCompletedAt
-            // 
-            ColCompletedAt.HeaderText = "CompletedAt";
-            ColCompletedAt.Name = "ColCompletedAt";
-            ColCompletedAt.ReadOnly = true;
-            // 
-            // ColCreatedAt
-            // 
-            ColCreatedAt.HeaderText = "CreatedAt";
-            ColCreatedAt.Name = "ColCreatedAt";
-            ColCreatedAt.ReadOnly = true;
             // 
             // cbSelectScoreboard
             // 
@@ -278,7 +212,6 @@
             Size = new Size(500, 500);
             pnlLayout.ResumeLayout(false);
             pnlLayout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGrid).EndInit();
             pnlScoreboardLayout.ResumeLayout(false);
             pnlScoreboardLayout.PerformLayout();
             ResumeLayout(false);
@@ -288,14 +221,6 @@
 
         private Panel pnlLayout;
         private Label lblScoreboard;
-        private DataGridView dataGrid;
-        private DataGridViewTextBoxColumn ColUser;
-        private DataGridViewTextBoxColumn ColSize;
-        private DataGridViewTextBoxColumn ColSeed;
-        private DataGridViewTextBoxColumn colHints;
-        private DataGridViewTextBoxColumn ColTime;
-        private DataGridViewTextBoxColumn ColCompletedAt;
-        private DataGridViewTextBoxColumn ColCreatedAt;
         private TableLayoutPanel pnlScoreboardLayout;
         private ComboBox cbSelectScoreboard;
         private Label lbPosition1;

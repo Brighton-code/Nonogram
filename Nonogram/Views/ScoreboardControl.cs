@@ -25,23 +25,15 @@ namespace Nonogram.Views
         {
             InitializeComponent();
             FillScoreboardDropdown();
+            cbSelectScoreboard.SelectedIndex = 0;
             cbSelectScoreboard.SelectedIndexChanged += UpdateScoreboard;
-            //LoadType();
         }
 
         public void LoadType()
         {
-            dataGrid.Rows.Clear();
-            JsonUserDatabase db = new JsonUserDatabase();
-            List<User> users = db.GetUsers("../../../Database/Users.json");
-
-            foreach (User user in users)
-            {
-                foreach (GameHistory history in user.History)
-                {
-                    dataGrid.Rows.Add([user.Name, history.GridSize, history.Seed, history.HintsRequested ,history.GameTime, history.CompletedAt, history.CreatedAt]);
-                }
-            }
+            GetGameHistories();
+            SortGameHistories();
+            SetAllLabels();
         }
 
         private void FillScoreboardDropdown()
