@@ -74,9 +74,9 @@ namespace Nonogram.Views
                 return; // change label text to no games found
 
             requestedGameHistories = requestedGameHistories
-                .OrderBy(gh => gh.history.GameTime)
+                .OrderBy(gh => gh.history.HintsRequested)
+                .ThenBy(gh => gh.history.GameTime)
                 .ThenBy(gh => gh.history.CompletedAt)
-                .ThenBy(gh => gh.history.HintsRequested)
                 .ToList();
         }
 
