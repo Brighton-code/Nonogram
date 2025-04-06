@@ -30,7 +30,6 @@
         {
             pnlLayout = new Panel();
             dataGrid = new DataGridView();
-            lblScoreboard = new Label();
             ColUser = new DataGridViewTextBoxColumn();
             ColSize = new DataGridViewTextBoxColumn();
             ColSeed = new DataGridViewTextBoxColumn();
@@ -38,6 +37,8 @@
             ColTime = new DataGridViewTextBoxColumn();
             ColCompletedAt = new DataGridViewTextBoxColumn();
             ColCreatedAt = new DataGridViewTextBoxColumn();
+            lblScoreboard = new Label();
+            pnlScoreboardLayout = new TableLayoutPanel();
             pnlLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGrid).BeginInit();
             SuspendLayout();
@@ -45,8 +46,9 @@
             // pnlLayout
             // 
             pnlLayout.Anchor = AnchorStyles.None;
-            pnlLayout.Controls.Add(dataGrid);
             pnlLayout.Controls.Add(lblScoreboard);
+            pnlLayout.Controls.Add(pnlScoreboardLayout);
+            pnlLayout.Controls.Add(dataGrid);
             pnlLayout.Location = new Point(0, 0);
             pnlLayout.Margin = new Padding(0);
             pnlLayout.Name = "pnlLayout";
@@ -59,24 +61,13 @@
             dataGrid.AllowUserToDeleteRows = false;
             dataGrid.AllowUserToOrderColumns = true;
             dataGrid.Columns.AddRange(new DataGridViewColumn[] { ColUser, ColSize, ColSeed, colHints, ColTime, ColCompletedAt, ColCreatedAt });
-            dataGrid.Location = new Point(50, 153);
+            dataGrid.Location = new Point(0, 0);
             dataGrid.Margin = new Padding(0);
             dataGrid.Name = "dataGrid";
             dataGrid.ReadOnly = true;
             dataGrid.RowHeadersWidth = 24;
-            dataGrid.Size = new Size(400, 300);
+            dataGrid.Size = new Size(40, 30);
             dataGrid.TabIndex = 2;
-            // 
-            // lblScoreboard
-            // 
-            lblScoreboard.AutoSize = true;
-            lblScoreboard.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
-            lblScoreboard.Location = new Point(42, 40);
-            lblScoreboard.Margin = new Padding(0);
-            lblScoreboard.Name = "lblScoreboard";
-            lblScoreboard.Size = new Size(416, 93);
-            lblScoreboard.TabIndex = 1;
-            lblScoreboard.Text = "Scoreboard";
             // 
             // ColUser
             // 
@@ -120,6 +111,41 @@
             ColCreatedAt.Name = "ColCreatedAt";
             ColCreatedAt.ReadOnly = true;
             // 
+            // lblScoreboard
+            // 
+            lblScoreboard.Anchor = AnchorStyles.None;
+            lblScoreboard.AutoSize = true;
+            lblScoreboard.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblScoreboard.Location = new Point(64, 0);
+            lblScoreboard.Margin = new Padding(0);
+            lblScoreboard.Name = "lblScoreboard";
+            lblScoreboard.Size = new Size(380, 86);
+            lblScoreboard.TabIndex = 1;
+            lblScoreboard.Text = "Scoreboard";
+            // 
+            // pnlScoreboardLayout
+            // 
+            pnlScoreboardLayout.Anchor = AnchorStyles.None;
+            pnlScoreboardLayout.ColumnCount = 2;
+            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlScoreboardLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            pnlScoreboardLayout.Location = new Point(0, 82);
+            pnlScoreboardLayout.Name = "pnlScoreboardLayout";
+            pnlScoreboardLayout.RowCount = 11;
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            pnlScoreboardLayout.Size = new Size(500, 418);
+            pnlScoreboardLayout.TabIndex = 3;
+            // 
             // ScoreboardControl
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -146,5 +172,6 @@
         private DataGridViewTextBoxColumn ColTime;
         private DataGridViewTextBoxColumn ColCompletedAt;
         private DataGridViewTextBoxColumn ColCreatedAt;
+        private TableLayoutPanel pnlScoreboardLayout;
     }
 }
