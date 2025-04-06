@@ -23,7 +23,7 @@ namespace Nonogram.Views
         {
             InitializeComponent();
             FillScoreboardDropdown();
-            cbSelectScoreboard.SelectedIndexChanged += GetGameHistories;
+            cbSelectScoreboard.SelectedIndexChanged += UpdateScoreboard;
             //LoadType();
         }
 
@@ -50,15 +50,19 @@ namespace Nonogram.Views
             }
         }
 
-        private List<GameHistory> GetGameHistories(object? sender, EventArgs e)
+        private void UpdateScoreboard(object? sender, EventArgs e)
         {
-            //int a = cbSelectScoreboard.SelectedIndex; 0 on 5x5
+            
+        }
+
+        private List<GameHistory> GetGameHistories()
+        {
             JsonUserDatabase db = new JsonUserDatabase();
             List<User> users = db.GetUsers("../../../Database/Users.json");
 
             List<GameHistory> allGames = new List<GameHistory>();
 
-            //Get all games
+            //Get all games with the selected size
             foreach (User user in users)
             {
                 foreach (GameHistory history in user.History.Where(h => h.GridSize == allowedGridSizes.ElementAt(cbSelectScoreboard.SelectedIndex)))
@@ -66,11 +70,7 @@ namespace Nonogram.Views
                     allGames.Add(history);
                 }
             }
-
-            int a = 1;
             return allGames;
         }
-
-
     }
 }
