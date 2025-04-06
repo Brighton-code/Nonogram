@@ -214,6 +214,7 @@ namespace Nonogram.Views
             _game.Stopwatch.StartOffset = TimeSpan.Zero;
             _game.Stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
+            lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
             //MessageBox.Show(size.ToString());
         }
 
