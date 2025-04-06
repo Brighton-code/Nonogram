@@ -73,7 +73,7 @@ namespace Nonogram.Views
             if (requestedGameHistories == null || requestedGameHistories.Count == 0)
                 return; // change label text to no games found
 
-            requestedGameHistories
+            requestedGameHistories = requestedGameHistories
                 .OrderBy(gh => gh.history.GameTime)
                 .ThenBy(gh => gh.history.CompletedAt)
                 .ThenBy(gh => gh.history.HintsRequested)
