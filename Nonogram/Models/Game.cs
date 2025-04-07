@@ -3,6 +3,13 @@ using System.Text.Json;
 
 namespace Nonogram.Models
 {
+    public enum EMarked
+    {
+        None = 0,
+        Done = 1,
+        Wrong = 2
+    }
+
     public class Game
     {
         public int GridSize { get; private set; }
@@ -183,12 +190,5 @@ namespace Nonogram.Models
 
             return hints;
         }
-    }
-
-    public enum EMarked
-    {
-        None = 0,
-        Done = 1,
-        Wrong = 2
     }
 }
