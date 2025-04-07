@@ -55,10 +55,4 @@ namespace Nonogram.Models
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromBase64String(dPassword.Hash));
         }
     }
-
-    public class DPassword(string hash, string salt)
-    {
-        public string Hash { get; private set; } = hash;
-        public string Salt { get; private set; } = salt;
-    }
 }
