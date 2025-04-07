@@ -46,7 +46,6 @@ namespace Nonogram.Models
         {
             byte[] hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
                 password,
-                //dPassword.Salt,
                 Convert.FromBase64String(dPassword.Salt),
                 iterations,
                 hashAlgorithm,
