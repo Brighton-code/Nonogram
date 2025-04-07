@@ -1,2 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Nonogram.Views.GameControl" Collapsed="true">
+    <Position X="14.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAQAgBACEoAhgAAACAAARSkECjAohCCAAIgABAAAQ=</HashCode>
+      <FileName>Views\GameControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Views.GameHistorySelectControl" Collapsed="true">
+    <Position X="16" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAgCAAAAMAAACAAAACAAEAQAAAAAACAAAAAAA=</HashCode>
+      <FileName>Views\GameHistorySelectControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Views.GameLoadControl" Collapsed="true">
+    <Position X="17.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAIABCACAACAAAAQAAAAAACAAAAAAA=</HashCode>
+      <FileName>Views\GameLoadControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Views.LoginControl" Collapsed="true">
+    <Position X="14.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAACAEAEAAAACAAAACAAAACAAAAAACAABkAEA=</HashCode>
+      <FileName>Views\LoginControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nonogram.Views.MenuControl" Collapsed="true">
+    <Position X="16" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAACAhAAAAAACAAAAGAIAAAAAAAAACCAAAAAA=</HashCode>
+      <FileName>Views\MenuControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Views.NavbarControl" Collapsed="true">
+    <Position X="17.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAgAAAAACAAACAABACAAAAGCAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Views\NavbarControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Views.RegisterControl" Collapsed="true">
+    <Position X="14.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAACAEAAAAQACAAAACAAAACCEAAAACAABgAEA=</HashCode>
+      <FileName>Views\RegisterControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nonogram.Views.ScoreboardControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAIBAgAgACEIAAQUgECAAAgKAAAAAAAgAAQDAAAAAEA=</HashCode>
+      <FileName>Views\ScoreboardControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Nonogram.Models.ControlTag" Collapsed="true">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\ControlTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.CustomStopwatch" Collapsed="true">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIABAAAAAAAAAAAAAAAAAEAAAAABAAAAAA=</HashCode>
+      <FileName>Models\CustomStopwatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.Game" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAABAAAAACAAICAEAgBCAAQEEAAkAAAQQAAMIJIAQ=</HashCode>
+      <FileName>Models\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.GameHistory" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIACAAAAGAIAAAAAAAAAAAAAAQAAAIAIAA=</HashCode>
+      <FileName>Models\GameHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.Grid" Collapsed="true">
+    <Position X="11.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.User" Collapsed="true">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAACAAACAAQAAAAAgAACAAACAQAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Models.DPassword" Collapsed="true">
+    <Position X="11.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nonogram.Database.JsonUserDatabase" Collapsed="true">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\JsonUserDatabase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nonogram.Main" Collapsed="true">
+    <Position X="17.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEBAAAAAKACAAAAAACABIgCEAAAABBIBQAAAgCAEAA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Nonogram.Interfaces.IHandlerInput" Collapsed="true">
+    <Position X="14.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IHandlerInput.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Nonogram.Interfaces.ILoadType" Collapsed="true">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ILoadType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Nonogram.Interfaces.IUser" Collapsed="true">
+    <Position X="14.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Nonogram.Models.TagType" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAg=</HashCode>
+      <FileName>Models\ControlTag.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Nonogram.Models.Marked" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Game.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
