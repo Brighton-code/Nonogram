@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nonogram.Models;
 using Nonogram.Database;
+using Nonogram.Interfaces;
 
 namespace Nonogram.Views
 {
-    public partial class LoginControl : UserControl
+    public partial class LoginControl : UserControl, IHandlerInput
     {
         public LoginControl()
         {
@@ -50,15 +51,14 @@ namespace Nonogram.Views
                 MessageBox.Show("Password does not match user");
                 return;
             }
-            //User.VerifyPassword(password);
+
             MessageBox.Show("Succefully logged in");
             Main.User = user;
             Main.ChangeNavUser(FindForm().Controls);
             Main.ChangeView("menu", FindForm().Controls);
         }
 
-        // Make Input handler class
-        private bool HandleInput(string text)
+        public bool HandleInput(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return false;

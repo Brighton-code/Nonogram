@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nonogram.Models;
 using Nonogram.Database;
+using Nonogram.Interfaces;
 
 namespace Nonogram.Views
 {
-    public partial class RegisterControl : UserControl
+    public partial class RegisterControl : UserControl, IHandlerInput
     {
         public RegisterControl()
         {
@@ -27,10 +28,10 @@ namespace Nonogram.Views
         private void btnRegister_Click(object sender, EventArgs e)
         {
             string name = tbName.Text;
-            string password1 = tbPassword1.Text;
-            string password2 = tbPassword2.Text;
+            string password = tbPassword1.Text;
+            string confirmPassword = tbPassword2.Text;
 
-            if (!HandleInput(name) || !HandleInput(password1) || !HandleInput(password2))
+            if (!HandleInput(name) || !HandleInput(password) || !HandleInput(confirmPassword))
             {
                 MessageBox.Show("Error with inputs", "Error Message");
                 return;
@@ -47,16 +48,22 @@ namespace Nonogram.Views
                 return;
             }
 
-            User user = new User(name, User.HashPassword(password1, password2));
-            db.Save(user, "../../../Database/Users.json");
+            // Check if password matches confirmPassword.
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match!");
+                return;
+            }
+
+            User user = new User(name, User.HashPassword(password), []);
+            db.SaveNewUser(user, "../../../Database/Users.json");
             MessageBox.Show("Succefully created a account");
 
-            // Change to game/menu screen
+            // Change to login screen.
             Main.ChangeView("login", FindForm().Controls);
         }
 
-        // Make Input handler class
-        private bool HandleInput(string text)
+        public bool HandleInput(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return false;

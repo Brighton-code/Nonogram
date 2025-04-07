@@ -3,39 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Nonogram.Models
 {
     public class User
     {
-        const int keySize = 64;
-        const int iterations = 350000;
-        static readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+        private const int _keySize = 64;
+        private const int _iterations = 350000;
+        private static readonly HashAlgorithmName s_hashAlgorithm = HashAlgorithmName.SHA512;
 
         public string Name { get; private set; }
         public DPassword Password { get; private set; }
+        public List<GameHistory> History { get; private set; } = [];
 
-        public User(string name, DPassword password)
+        [JsonConstructor]
+        public User(string name, DPassword password, List<GameHistory> history)
         {
             Name = name;
             Password = password;
+            History = history ?? [];
         }
 
         // https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
-        public static DPassword HashPassword(string password1, string password2)
+        public static DPassword HashPassword(string password)
         {
-            if (password1 != password2)
-                throw new ArgumentException("Passwords do not match!");
-
-            byte[] salt = RandomNumberGenerator.GetBytes(keySize); 
+            byte[] salt = RandomNumberGenerator.GetBytes(_keySize); 
 
             byte[] hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password1),
+                Encoding.UTF8.GetBytes(password),
                 salt,
-                iterations,
-                hashAlgorithm,
-                keySize
+                _iterations,
+                s_hashAlgorithm,
+                _keySize
             );
 
             return new DPassword(Convert.ToBase64String(hash), Convert.ToBase64String(salt));
@@ -45,25 +46,13 @@ namespace Nonogram.Models
         {
             byte[] hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
                 password,
-                //dPassword.Salt,
                 Convert.FromBase64String(dPassword.Salt),
-                iterations,
-                hashAlgorithm,
-                keySize
+                _iterations,
+                s_hashAlgorithm,
+                _keySize
             );
 
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromBase64String(dPassword.Hash));
         }
-    }
-
-    //class DPassword(string hash, string salt)
-    //{
-    //    public string Hash { get; private set; } = hash;
-    //    public string Salt { get; private set; } = salt;
-    //}
-    public class DPassword(string hash, string salt)
-    {
-        public string Hash { get; private set; } = hash;
-        public string Salt { get; private set; } = salt;
     }
 }
