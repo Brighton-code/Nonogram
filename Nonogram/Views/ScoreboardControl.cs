@@ -1,4 +1,5 @@
 ﻿using Nonogram.Database;
+using Nonogram.Interfaces;
 using Nonogram.Models;
 using System;
 using System.Collections.Generic;

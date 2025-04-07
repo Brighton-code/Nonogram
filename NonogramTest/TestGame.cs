@@ -90,7 +90,7 @@ namespace NonogramTest
             for (int i = 0; i < game.Solution.GetLength(0); i++)
                 for (int j = 0; j < game.Solution.GetLength(1); j++)
                     if (game.Solution[i, j] == 1)
-                        game.Marked[i, j] = EMarked.Done;
+                        game.GameState[i, j] = Marked.Done;
 
             game.ValidateGame();
             Assert.IsTrue(game.Complete);
@@ -115,7 +115,7 @@ namespace NonogramTest
             for (int i = 0; i < game.Solution.GetLength(0); i++)
                 for (int j = 0; j < game.Solution.GetLength(1); j++)
                     if (game.Solution[i, j] == 1)
-                        game.Marked[i, j] = EMarked.Wrong;
+                        game.GameState[i, j] = Marked.Wrong;
 
             string markedString = game.EncodeMarked();
             Assert.IsInstanceOfType(markedString, typeof(string));
