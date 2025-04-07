@@ -50,14 +50,18 @@ namespace Nonogram.Views
                 MessageBox.Show("Password does not match user");
                 return;
             }
-            //User.VerifyPassword(password);
+
             MessageBox.Show("Succefully logged in");
             Main.User = user;
             Main.ChangeNavUser(FindForm().Controls);
             Main.ChangeView("menu", FindForm().Controls);
         }
 
-        // Make Input handler class
+        /// <summary>
+        /// Handle user input text
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private bool HandleInput(string text)
         {
             if (string.IsNullOrEmpty(text))
