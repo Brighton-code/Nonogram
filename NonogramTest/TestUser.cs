@@ -147,7 +147,7 @@ namespace NonogramTest
         }
 
         [TestMethod]
-        [Priority(100), DoNotParallelize]
+        [Priority(99), DoNotParallelize]
         public void TestCleanupUsersFile()
         {
             TestDeleteUserFile();
