@@ -15,12 +15,12 @@ namespace Nonogram.Views
 {
     public partial class ScoreboardControl : UserControl, ILoadType
     {
-        List<int> allowedGridSizes = new List<int>()
+        private List<int> _allowedGridSizes = new List<int>()
         {
             5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
         };
 
-        List<(string user, GameHistory history)> requestedGameHistories = new List<(string user, GameHistory)>();
+        private List<(string user, GameHistory history)> _requestedGameHistories = new List<(string user, GameHistory)>();
 
         public ScoreboardControl()
         {
@@ -39,7 +39,7 @@ namespace Nonogram.Views
 
         private void FillScoreboardDropdown()
         {
-            foreach(int size in allowedGridSizes)
+            foreach(int size in _allowedGridSizes)
             {
                 cbSelectScoreboard.Items.Add($"{size}x{size} difficulty");
             }
@@ -57,24 +57,24 @@ namespace Nonogram.Views
             JsonUserDatabase db = new JsonUserDatabase();
             List<User> users = db.GetUsers("../../../Database/Users.json");
 
-            requestedGameHistories.Clear();
+            _requestedGameHistories.Clear();
 
             //Get all games with the selected size
             foreach (User user in users)
             {
-                foreach (GameHistory history in user.History.Where(h => h.GridSize == allowedGridSizes.ElementAt(cbSelectScoreboard.SelectedIndex) && h.CompletedAt != null))
+                foreach (GameHistory history in user.History.Where(h => h.GridSize == _allowedGridSizes.ElementAt(cbSelectScoreboard.SelectedIndex) && h.CompletedAt != null))
                 {
-                    requestedGameHistories.Add((user.Name, history));
+                    _requestedGameHistories.Add((user.Name, history));
                 }
             }
         }
 
         private void SortGameHistories()
         {
-            if (requestedGameHistories == null || requestedGameHistories.Count == 0)
+            if (_requestedGameHistories == null || _requestedGameHistories.Count == 0)
                 return; // change label text to no games found
 
-            requestedGameHistories = requestedGameHistories
+            _requestedGameHistories = _requestedGameHistories
                 .OrderBy(gh => gh.history.HintsRequested)
                 .ThenBy(gh => gh.history.GameTime)
                 .ThenBy(gh => gh.history.CompletedAt)
@@ -83,7 +83,7 @@ namespace Nonogram.Views
 
         private void SetAllLabels()
         {
-            List<(string user, GameHistory history)> gameHistories = requestedGameHistories.Take(10).ToList();
+            List<(string user, GameHistory history)> gameHistories = _requestedGameHistories.Take(10).ToList();
 
             foreach (Control control in pnlScoreboardLayout.Controls)
             {
@@ -93,7 +93,7 @@ namespace Nonogram.Views
                 }
             }
 
-            if (requestedGameHistories == null || requestedGameHistories.Count == 0)
+            if (_requestedGameHistories == null || _requestedGameHistories.Count == 0)
             {
                 lbPosition1.Text = "No completed games at this size.";
                 return;
