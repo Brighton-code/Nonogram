@@ -13,11 +13,4 @@ namespace Nonogram.Models
         Guest,
         Load
     }
-
-    public class ControlTag
-    {
-        public List<TagType> tags = [];
-        public ControlTag() { }
-        public ControlTag(List<TagType> tags) => this.tags = tags;
-    }
 }
