@@ -2,6 +2,7 @@ using Nonogram.Views;
 using Nonogram.Models;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using Nonogram.Interfaces;
 
 namespace Nonogram
 {
