@@ -3,6 +3,7 @@ using Nonogram.Models;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using Nonogram.Interfaces;
+using System.Collections.Generic;
 
 namespace Nonogram
 {
@@ -118,6 +119,26 @@ namespace Nonogram
                 }
             }
             return buttons;
+        }
+
+        public static List<Label> GetAllLabels(Control parent)
+        {
+            List<Label> labels = new List<Label>();
+            foreach (Control control in parent.Controls)
+            {
+                // Check if the control is a Button
+                if (control is Label label)
+                {
+                    labels.Add(label);
+                }
+
+                // Recursively check child controls (if any)
+                if (control.HasChildren)
+                {
+                    labels.AddRange(GetAllLabels(control));
+                }
+            }
+            return labels;
         }
 
         public static Color GetComplementaryColor(Color color)

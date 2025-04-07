@@ -23,6 +23,7 @@ namespace Nonogram.Views
         {
             Form form = FindForm();
             List<Button> buttons = Main.GetAllButtons(form);
+            List<Label> labels = Main.GetAllLabels(form);
 
             Color color = cbTheme.Checked ? ColorTranslator.FromHtml("#2D2D30") : ColorTranslator.FromHtml("#F0F0F0");
             Color colorCom = Main.GetComplementaryColor(color);
@@ -32,6 +33,11 @@ namespace Nonogram.Views
             {
                 button.BackColor = color;
                 button.ForeColor = colorCom;
+            }
+
+            foreach (Label label in labels) 
+            {
+                label.ForeColor = colorCom;
             }
         }
 
