@@ -47,6 +47,10 @@ namespace Nonogram.Views
                 null, pnlGame, [true]);
         }
 
+        /// <summary>
+        /// Check if Marked user cells has any changes.
+        /// </summary>
+        /// <returns></returns>
         private bool MarkedIsChanged()
         {
             return Game.Flatten(_game.GameState).SequenceEqual(new Marked[_game.GridSize * _game.GridSize]);
@@ -69,6 +73,11 @@ namespace Nonogram.Views
             lblStopwatch.Text = "Time elapsed";
         }
 
+        /// <summary>
+        /// Store History object if a game is being played.
+        /// Rewrites history if one already exists with the same Seed and GridSize.
+        /// Stores a new history otherwise.
+        /// </summary>
         private void StoreStateToHistory()
         {
             if (_game == null) return;
@@ -97,6 +106,13 @@ namespace Nonogram.Views
             pnlGame.Invalidate();
         }
 
+        /// <summary>
+        /// Detects game area boundary and calculates the row and col index of the chosen cell (0 based index).
+        /// Marks the chosen cell with the corresponding mouse action
+        /// Saves the current game state to the users history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PnlGame_MouseClick(object? sender, MouseEventArgs e)
         {
             if (_game == null) return;
@@ -131,6 +147,19 @@ namespace Nonogram.Views
             }
         }
 
+        /// <summary>
+        /// Draw the game area by calculating what the cell size should be for the longest axis with the gridsize and max hint size for axis.
+        /// Sets CellSize, GridStart and GridArea in the game object for later reference in other methods i.e. mouse click event.
+        /// Calculates font size for single digit and double digits based on CellSize.
+        /// Draws GridArea with a white color.
+        /// Draws Horizontal and Vertical lines between Cells.
+        /// Draws First Marked user cells.
+        /// Draws Secondly Solution overlay with information about correctness of Marked user cells and Solution cells.
+        /// Draws Thirdly Horizontal hints per row.
+        /// Draws Lastly Vertical hints per column.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
             if (_game == null) return;
@@ -141,7 +170,6 @@ namespace Nonogram.Views
             _game.GridStart = new Point(_game.CellSize * _game.RowHintMax, _game.CellSize * _game.ColHintMax);
             _game.GridArea = _game.CellSize * _game.GridSize;
 
-            // Make scoped?
             _font = new Font(_fontFamily, Math.Max(_game.CellSize, 1), FontStyle.Bold, GraphicsUnit.Pixel);
             _fontHigh = new Font(_fontFamily, Math.Max((float)(_game.CellSize - (_game.CellSize / 3.5)), 1), FontStyle.Bold, GraphicsUnit.Pixel);
 
@@ -164,7 +192,7 @@ namespace Nonogram.Views
                     else if (_game.GameState[row, col] == Marked.Wrong)
                         g.DrawString("X", _font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
 
-            // TODO:
+            // Show correct solution with colored cells.
             if (_showSolution)
                 for (int row = 0; row < _game.Solution.GetLength(0); row++)
                     for (int col = 0; col < _game.Solution.GetLength(1); col++)
@@ -200,6 +228,11 @@ namespace Nonogram.Views
 
         }
 
+        /// <summary>
+        /// New GridSize is chosen and reset the Game's history object to relevant data.
+        /// Resets timer and stopwatch (GameTime) for accurate time keeping.
+        /// </summary>
+        /// <param name="size"></param>
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
@@ -215,6 +248,13 @@ namespace Nonogram.Views
             lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
         }
 
+        /// <summary>
+        /// Loads history from user through a history object.
+        /// Sets a game object with corresponding GridSize and history Seed.
+        /// Sets histoy object to paramter history object.
+        /// Sets stopwatch offset to already played GameTime.
+        /// </summary>
+        /// <param name="gameHistory"></param>
         public void LoadHistory(GameHistory gameHistory)
         {
             _game = new Game(gameHistory.GridSize, gameHistory.Seed);
@@ -228,6 +268,11 @@ namespace Nonogram.Views
             pnlGame.Refresh();
         }
 
+        /// <summary>
+        /// Update the label for GameTime through a thread.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateTimeLabel(object? sender, ElapsedEventArgs e)
         {
             if (IsHandleCreated)
