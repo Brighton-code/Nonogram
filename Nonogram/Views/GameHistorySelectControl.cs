@@ -15,7 +15,7 @@ namespace Nonogram.Views
 {
     public partial class GameHistorySelectControl : UserControl
     {
-        private List<GameHistory> userHistory;
+        private List<GameHistory> _userHistory;
 
         public GameHistorySelectControl()
         {
@@ -29,10 +29,10 @@ namespace Nonogram.Views
 
             cbGameHistory.Items.Clear();
 
-            userHistory = Main.User.History.Where(h => h.CompletedAt == null).ToList();
+            _userHistory = Main.User.History.Where(h => h.CompletedAt == null).ToList();
 
             // Display available unfinished games
-            foreach (GameHistory history in userHistory)
+            foreach (GameHistory history in _userHistory)
             {
                 cbGameHistory.Items.Add($"Game size: {history.GridSize}x{history.GridSize}, Playtime: {history.GameTime.ToString(@"hh\:mm\:ss\.ff")}, Started at: {history.CreatedAt.Value.ToString(@"dd-MM-yyyy")}");
             }
@@ -44,14 +44,12 @@ namespace Nonogram.Views
         {
             GameControl gc = (GameControl)FindForm().Controls.Find("game", true).FirstOrDefault();
 
-            int a = cbGameHistory.SelectedIndex;
             Main.ChangeView("game", FindForm().Controls);
 
-            if (gc != null) 
+            if(gc != null)
             {
-                gc.LoadHistory(userHistory[cbGameHistory.SelectedIndex]);
+                gc.LoadHistory(_userHistory[cbGameHistory.SelectedIndex]);
             }
-
         }
     }
 }
