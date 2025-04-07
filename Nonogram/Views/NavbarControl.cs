@@ -33,7 +33,6 @@ namespace Nonogram.Views
                 button.BackColor = color;
                 button.ForeColor = colorCom;
             }
-
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
