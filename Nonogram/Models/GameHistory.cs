@@ -10,7 +10,5 @@
         public DateTime? CompletedAt { get; set; } = null;
         public DateTime? CreatedAt { get; set; } = null;
         public DateTime? UpdatedAt { get; set; } = null;
-        // Add function to all properties that when their value changes UpdatedAt changes too
-        //public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

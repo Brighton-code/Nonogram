@@ -2,12 +2,14 @@ using Nonogram.Views;
 using Nonogram.Models;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using Nonogram.Interfaces;
 
 namespace Nonogram
 {
     public partial class Main : Form
     {
         public static User? User = null;
+
         public Main()
         {
             InitializeComponent();
@@ -20,12 +22,11 @@ namespace Nonogram
             
             Main.ChangeNavUser(Controls);
             Main.ChangeView("menu", Controls);
-            //MessageBox.Show($"{Width}, {Height}");
         }
 
-        public static void ChangeView(string controlName, Control.ControlCollection Controls)
+        public static void ChangeView(string controlName, Control.ControlCollection controls)
         {
-            Control? collectionControl = Controls.Find("pnlBody", false).FirstOrDefault();
+            Control? collectionControl = controls.Find("pnlBody", false).FirstOrDefault();
 
             if (collectionControl == null) return;
 
@@ -45,13 +46,13 @@ namespace Nonogram
 
                         if (tag == TagType.Guest && Main.User != null)
                         {
-                            Main.ChangeView("menu", Controls);
+                            Main.ChangeView("menu", controls);
                             MessageBox.Show("Requires guest user");
                             return;
                         }
                         else if (tag == TagType.Auth && Main.User == null)
                         {
-                            Main.ChangeView("menu", Controls);
+                            Main.ChangeView("menu", controls);
                             MessageBox.Show("Requires logged in user");
                             return;
                         }
@@ -61,9 +62,9 @@ namespace Nonogram
             }
         }
 
-        public static void ChangeNavUser(Control.ControlCollection Controls)
+        public static void ChangeNavUser(Control.ControlCollection controls)
         {
-            Control? collectionControl = Controls.Find("pnlNav", true).FirstOrDefault();
+            Control? collectionControl = controls.Find("pnlNav", true).FirstOrDefault();
             if (collectionControl == null) return;
 
             if (Main.User == null)
@@ -246,11 +247,6 @@ namespace Nonogram
 
             if (Controls.Find("game", true).First().Visible && !e.Cancel)
                 Main.ChangeView("menu", Controls);
-
-            //if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) == DialogResult.No)
-            //{
-            //    e.Cancel = true; // Cancel the close operation
-            //}
         }
     }
 }

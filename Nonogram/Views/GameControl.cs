@@ -19,13 +19,14 @@ namespace Nonogram.Views
     public partial class GameControl : UserControl
     {
         private Game _game;
-        private System.Timers.Timer _timer;
         private GameHistory _history;
+        private System.Timers.Timer _timer;
 
-        FontFamily fontFamily = new("Arial");
-        Font font;
-        Font fontHigh;
-        bool showSolution = false;
+        private Font _font;
+        private Font _fontHigh;
+        private FontFamily _fontFamily = new("Arial");
+        private bool _showSolution = false;
+
         public GameControl()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Nonogram.Views
 
         private bool MarkedIsChanged()
         {
-            return Game.Flatten(_game.Marked).SequenceEqual(new EMarked[_game.GridSize * _game.GridSize]);
+            return Game.Flatten(_game.GameState).SequenceEqual(new Marked[_game.GridSize * _game.GridSize]);
         }
 
         private void GameControl_VisibleChanged(object? sender, EventArgs e)
@@ -65,7 +66,7 @@ namespace Nonogram.Views
             _game = null;
             _history = null;
             lblSeed.Text = "Seed";
-            lblStopwatch.Text = "Draw time";
+            lblStopwatch.Text = "Time elapsed";
         }
 
         private void StoreStateToHistory()
@@ -80,10 +81,10 @@ namespace Nonogram.Views
             if (_game.Complete)
                 _history.CompletedAt = _history.UpdatedAt;
 
-            int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
+            int index = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
 
-            if (indx != -1)
-                Main.User.History[indx] = _history;
+            if (index != -1)
+                Main.User.History[index] = _history;
             else
                 Main.User.History.Add(_history);
 
@@ -111,10 +112,10 @@ namespace Nonogram.Views
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    _game.Marked[row, col] = _game.Marked[row, col] != EMarked.Done ? EMarked.Done : EMarked.None;
+                    _game.GameState[row, col] = _game.GameState[row, col] != Marked.Done ? Marked.Done : Marked.None;
                     break;
                 case MouseButtons.Right:
-                    _game.Marked[row, col] = _game.Marked[row, col] != EMarked.Wrong ? EMarked.Wrong : EMarked.None;
+                    _game.GameState[row, col] = _game.GameState[row, col] != Marked.Wrong ? Marked.Wrong : Marked.None;
                     break;
             }
 
@@ -132,7 +133,6 @@ namespace Nonogram.Views
 
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
-            Stopwatch sw = Stopwatch.StartNew();
             if (_game == null) return;
 
             Graphics g = e.Graphics;
@@ -142,8 +142,8 @@ namespace Nonogram.Views
             _game.GridArea = _game.CellSize * _game.GridSize;
 
             // Make scoped?
-            font = new Font(fontFamily, Math.Max(_game.CellSize, 1), FontStyle.Bold, GraphicsUnit.Pixel);
-            fontHigh = new Font(fontFamily, Math.Max((float)(_game.CellSize - (_game.CellSize / 3.5)), 1), FontStyle.Bold, GraphicsUnit.Pixel);
+            _font = new Font(_fontFamily, Math.Max(_game.CellSize, 1), FontStyle.Bold, GraphicsUnit.Pixel);
+            _fontHigh = new Font(_fontFamily, Math.Max((float)(_game.CellSize - (_game.CellSize / 3.5)), 1), FontStyle.Bold, GraphicsUnit.Pixel);
 
             Rectangle area = new Rectangle(_game.GridStart.X, _game.GridStart.Y, _game.GridArea, _game.GridArea);
 
@@ -157,51 +157,49 @@ namespace Nonogram.Views
             g.DrawRectangle(Pens.Black, area);
 
             // Draw Marked cells
-            for (int row = 0; row < _game.Marked.GetLength(0); row++)
-                for (int col = 0; col < _game.Marked.GetLength(1); col++)
-                    if (_game.Marked[row, col] == EMarked.Done)
+            for (int row = 0; row < _game.GameState.GetLength(0); row++)
+                for (int col = 0; col < _game.GameState.GetLength(1); col++)
+                    if (_game.GameState[row, col] == Marked.Done)
                         g.FillRectangle(Brushes.Black, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-                    else if (_game.Marked[row, col] == EMarked.Wrong)
-                        g.DrawString("X", font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
+                    else if (_game.GameState[row, col] == Marked.Wrong)
+                        g.DrawString("X", _font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
 
-#if DEBUG
-            if (showSolution)
+            // TODO:
+            if (_showSolution)
                 for (int row = 0; row < _game.Solution.GetLength(0); row++)
                     for (int col = 0; col < _game.Solution.GetLength(1); col++)
                         if (_game.Solution[row, col] == 1)
                         {
 
-                            if (_game.Marked[row, col] == EMarked.None)
+                            if (_game.GameState[row, col] == Marked.None)
                                 g.FillRectangle(Brushes.Blue, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-                            else if (_game.Marked[row, col] == EMarked.Wrong)
+                            else if (_game.GameState[row, col] == Marked.Wrong)
                                 g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-                            else if (_game.Marked[row, col] == EMarked.Done)
+                            else if (_game.GameState[row, col] == Marked.Done)
                                 g.FillRectangle(Brushes.Green, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
                         }
                         else
-                            if (_game.Marked[row, col] == EMarked.Done)
+                            if (_game.GameState[row, col] == Marked.Done)
                             g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-#endif
 
             // Draw Horizontal Hints
             for (int i = 0; i < _game.RowHints.Length; i++)
                 for (int j = 0; j < _game.RowHints[i].Length; j++)
                     if (_game.RowHints[i][j] < 10)
-                        g.DrawString(_game.RowHints[i][j].ToString(), font, Brushes.Black, new Rectangle((_game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length)) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i), _game.CellSize, _game.CellSize));
+                        g.DrawString(_game.RowHints[i][j].ToString(), _font, Brushes.Black, new Rectangle((_game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length)) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i), _game.CellSize, _game.CellSize));
                     else
-                        g.DrawString(_game.RowHints[i][j].ToString(), fontHigh, Brushes.Black, _game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i) + (int)(_game.CellSize / 5));
+                        g.DrawString(_game.RowHints[i][j].ToString(), _fontHigh, Brushes.Black, _game.GridStart.X - (_game.CellSize * _game.RowHints[i].Length) + (_game.CellSize * j), _game.GridStart.Y + (_game.CellSize * i) + (int)(_game.CellSize / 5));
 
             // Draw Vertical Hints
             for (int i = 0; i < _game.ColHints.Length; i++)
                 for (int j = 0; j < _game.ColHints[i].Length; j++)
                     if (_game.ColHints[i][j] < 10)
-                        g.DrawString(_game.ColHints[i][j].ToString(), font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
+                        g.DrawString(_game.ColHints[i][j].ToString(), _font, Brushes.Black, new Rectangle(_game.GridStart.X + (_game.CellSize * i), (_game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length)) + (_game.CellSize * j), _game.CellSize, _game.CellSize));
                     else
-                        g.DrawString(_game.ColHints[i][j].ToString(), fontHigh, Brushes.Black, _game.GridStart.X + (_game.CellSize * i), _game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length) + (_game.CellSize * j) + (int)(_game.CellSize / 5));
+                        g.DrawString(_game.ColHints[i][j].ToString(), _fontHigh, Brushes.Black, _game.GridStart.X + (_game.CellSize * i), _game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length) + (_game.CellSize * j) + (int)(_game.CellSize / 5));
 
-            sw.Stop();
-            //lblStopwatch.Text = sw.Elapsed.ToString();
         }
+
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
@@ -215,7 +213,6 @@ namespace Nonogram.Views
             _game.Stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
             lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
-            //MessageBox.Show(size.ToString());
         }
 
         public void LoadHistory(GameHistory gameHistory)
@@ -260,9 +257,8 @@ namespace Nonogram.Views
 
         private void btnSolution_Click(object sender, EventArgs e)
         {
-            showSolution = !showSolution;
+            _showSolution = !_showSolution;
             pnlGame.Invalidate();
-
         }
 
         private void btnHint_Click(object sender, EventArgs e)

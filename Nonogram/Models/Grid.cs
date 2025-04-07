@@ -35,7 +35,6 @@ namespace Nonogram.Models
             }
             return (grid, seed);
         }
-
         public static (int[][] hor, int[][] vert) CountSumsHorizontal(int[,] grid)
         {
             int[][] sumsX = new int[grid.GetLength(0)][];

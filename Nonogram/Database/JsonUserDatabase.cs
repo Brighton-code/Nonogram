@@ -1,23 +1,14 @@
-﻿using System;
+﻿using Nonogram.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Nonogram.Models;
 
 namespace Nonogram.Database
 {
-    interface IUser
-    {
-        public void SaveToUser(User user, string filePath);
-        public void SaveNewUser(User user, string filePath);
-        public List<User> GetUsers(string filePath);
-    }
-
-
     public class JsonUserDatabase : IUser
     {
         readonly JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };

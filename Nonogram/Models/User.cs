@@ -10,9 +10,9 @@ namespace Nonogram.Models
 {
     public class User
     {
-        const int keySize = 64;
-        const int iterations = 350000;
-        static readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+        private const int _keySize = 64;
+        private const int _iterations = 350000;
+        private static readonly HashAlgorithmName s_hashAlgorithm = HashAlgorithmName.SHA512;
 
         public string Name { get; private set; }
         public DPassword Password { get; private set; }
@@ -29,14 +29,14 @@ namespace Nonogram.Models
         // https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
         public static DPassword HashPassword(string password)
         {
-            byte[] salt = RandomNumberGenerator.GetBytes(keySize); 
+            byte[] salt = RandomNumberGenerator.GetBytes(_keySize); 
 
             byte[] hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(password),
                 salt,
-                iterations,
-                hashAlgorithm,
-                keySize
+                _iterations,
+                s_hashAlgorithm,
+                _keySize
             );
 
             return new DPassword(Convert.ToBase64String(hash), Convert.ToBase64String(salt));
@@ -46,11 +46,10 @@ namespace Nonogram.Models
         {
             byte[] hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
                 password,
-                //dPassword.Salt,
                 Convert.FromBase64String(dPassword.Salt),
-                iterations,
-                hashAlgorithm,
-                keySize
+                _iterations,
+                s_hashAlgorithm,
+                _keySize
             );
 
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromBase64String(dPassword.Hash));
