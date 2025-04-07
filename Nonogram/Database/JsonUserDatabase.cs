@@ -11,7 +11,7 @@ namespace Nonogram.Database
 {
     public class JsonUserDatabase : IUser
     {
-        readonly JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+        private readonly JsonSerializerOptions _options = new JsonSerializerOptions { WriteIndented = true };
 
         public List<User> GetUsers(string filePath)
         {
@@ -22,7 +22,7 @@ namespace Nonogram.Database
             if (string.IsNullOrWhiteSpace(json))
                 return new List<User>();
 
-            List<User> tmp = JsonSerializer.Deserialize<List<User>>(json, options);
+            List<User> tmp = JsonSerializer.Deserialize<List<User>>(json, _options);
             return tmp;
         }
 
@@ -34,7 +34,7 @@ namespace Nonogram.Database
             if (indx != -1)
                 users[indx] = user;
 
-            string json = JsonSerializer.Serialize(users, options);
+            string json = JsonSerializer.Serialize(users, _options);
             File.WriteAllText(filePath, json);
         }
 
@@ -43,7 +43,7 @@ namespace Nonogram.Database
             List<User> users = GetUsers(filePath);
             users.Add(user);
 
-            string json = JsonSerializer.Serialize(users, options);
+            string json = JsonSerializer.Serialize(users, _options);
             File.WriteAllText(filePath, json);
         }
     }
