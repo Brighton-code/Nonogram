@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Nonogram.Models
 {
-
     public enum TagType
     {
         None,
@@ -21,10 +20,4 @@ namespace Nonogram.Models
         public ControlTag() { }
         public ControlTag(List<TagType> tags) => this.tags = tags;
     }
-
-    //TODO: Enum?
-    //public interface ILoadType
-    //{
-    //    public void LoadType();
-    //}
 }
