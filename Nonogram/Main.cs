@@ -74,7 +74,7 @@ namespace Nonogram
                     if (control.Name == "lblUser") control.Visible = false;
                     else if (control.Name == "btnUser")
                     {
-                        control.Text = "login";
+                        control.Text = "Login";
                         control.Tag = "login";
                     }
                 }
@@ -92,7 +92,7 @@ namespace Nonogram
                     }
                     else if (control.Name == "btnUser")
                     {
-                        control.Text = "logout";
+                        control.Text = "Logout";
                         control.Tag = "logout";
                     }
                 }
