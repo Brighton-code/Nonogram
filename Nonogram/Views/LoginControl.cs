@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Nonogram.Models;
 using Nonogram.Database;
+using Nonogram.Interfaces;
 
 namespace Nonogram.Views
 {
-    public partial class LoginControl : UserControl
+    public partial class LoginControl : UserControl, IHandlerInput
     {
         public LoginControl()
         {
@@ -57,12 +58,7 @@ namespace Nonogram.Views
             Main.ChangeView("menu", FindForm().Controls);
         }
 
-        /// <summary>
-        /// Handle user input text
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        private bool HandleInput(string text)
+        public bool HandleInput(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return false;
