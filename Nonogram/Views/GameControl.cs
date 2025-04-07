@@ -66,7 +66,7 @@ namespace Nonogram.Views
             _game = null;
             _history = null;
             lblSeed.Text = "Seed";
-            lblStopwatch.Text = "Draw time";
+            lblStopwatch.Text = "Time elapsed";
         }
 
         private void StoreStateToHistory()
@@ -81,10 +81,10 @@ namespace Nonogram.Views
             if (_game.Complete)
                 _history.CompletedAt = _history.UpdatedAt;
 
-            int indx = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
+            int index = Main.User.History.FindIndex(h => h.Seed == _game.Seed && h.GridSize == _game.GridSize);
 
-            if (indx != -1)
-                Main.User.History[indx] = _history;
+            if (index != -1)
+                Main.User.History[index] = _history;
             else
                 Main.User.History.Add(_history);
 
@@ -133,7 +133,6 @@ namespace Nonogram.Views
 
         private void PnlGame_Paint(object? sender, PaintEventArgs e)
         {
-            Stopwatch sw = Stopwatch.StartNew();
             if (_game == null) return;
 
             Graphics g = e.Graphics;
@@ -165,7 +164,7 @@ namespace Nonogram.Views
                     else if (_game.GameState[row, col] == Marked.Wrong)
                         g.DrawString("X", _font, Brushes.DarkRed, new Rectangle(_game.GridStart.X + (col * _game.CellSize), _game.GridStart.Y + (row * _game.CellSize), _game.CellSize, _game.CellSize));
 
-#if DEBUG
+            // TODO:
             if (_showSolution)
                 for (int row = 0; row < _game.Solution.GetLength(0); row++)
                     for (int col = 0; col < _game.Solution.GetLength(1); col++)
@@ -182,7 +181,6 @@ namespace Nonogram.Views
                         else
                             if (_game.GameState[row, col] == Marked.Done)
                             g.FillRectangle(Brushes.Red, _game.GridStart.X + (col * _game.CellSize + _game.CellPadding.Left), _game.GridStart.Y + (row * _game.CellSize + _game.CellPadding.Top), _game.CellSize - _game.CellPadding.Left - _game.CellPadding.Right, _game.CellSize - _game.CellPadding.Bottom - _game.CellPadding.Top);
-#endif
 
             // Draw Horizontal Hints
             for (int i = 0; i < _game.RowHints.Length; i++)
@@ -200,9 +198,8 @@ namespace Nonogram.Views
                     else
                         g.DrawString(_game.ColHints[i][j].ToString(), _fontHigh, Brushes.Black, _game.GridStart.X + (_game.CellSize * i), _game.GridStart.Y - (_game.CellSize * _game.ColHints[i].Length) + (_game.CellSize * j) + (int)(_game.CellSize / 5));
 
-            sw.Stop();
-            //lblStopwatch.Text = sw.Elapsed.ToString();
         }
+
         public void ChangeGrid(int size)
         {
             _game = new Game(size);
@@ -216,7 +213,6 @@ namespace Nonogram.Views
             _game.Stopwatch.Restart();
             lblSeed.Text = _game.Seed.ToString();
             lblHintsRequested.Text = $"Hints: {_history.HintsRequested}";
-            //MessageBox.Show(size.ToString());
         }
 
         public void LoadHistory(GameHistory gameHistory)
@@ -263,7 +259,6 @@ namespace Nonogram.Views
         {
             _showSolution = !_showSolution;
             pnlGame.Invalidate();
-
         }
 
         private void btnHint_Click(object sender, EventArgs e)
