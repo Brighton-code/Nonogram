@@ -37,7 +37,7 @@ namespace Nonogram.Views
                 cbGameHistory.Items.Add($"Game size: {history.GridSize}x{history.GridSize}, Playtime: {history.GameTime.ToString(@"hh\:mm\:ss\.ff")}, Started at: {history.CreatedAt.Value.ToString(@"dd-MM-yyyy")}");
             }
 
-            if(cbGameHistory.Items.Count > 0) cbGameHistory.SelectedIndex = 0;
+            if (cbGameHistory.Items.Count > 0) cbGameHistory.SelectedIndex = 0;
         }
 
         private void btnLoadGame_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace Nonogram.Views
 
             Main.ChangeView("game", FindForm().Controls);
 
-            if(gc != null)
+            if (gc != null)
             {
                 gc.LoadHistory(_userHistory[cbGameHistory.SelectedIndex]);
             }

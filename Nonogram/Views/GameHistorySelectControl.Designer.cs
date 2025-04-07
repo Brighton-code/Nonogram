@@ -49,10 +49,11 @@
             // 
             // btnLoadGame
             // 
-            btnLoadGame.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLoadGame.Location = new Point(184, 357);
+            btnLoadGame.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLoadGame.Location = new Point(75, 258);
+            btnLoadGame.Margin = new Padding(0);
             btnLoadGame.Name = "btnLoadGame";
-            btnLoadGame.Size = new Size(114, 42);
+            btnLoadGame.Size = new Size(350, 90);
             btnLoadGame.TabIndex = 3;
             btnLoadGame.Text = "Load game";
             btnLoadGame.UseVisualStyleBackColor = true;
@@ -60,21 +61,24 @@
             // 
             // cbGameHistory
             // 
+            cbGameHistory.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cbGameHistory.DropDownWidth = 500;
+            cbGameHistory.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbGameHistory.FormattingEnabled = true;
-            cbGameHistory.Location = new Point(63, 136);
+            cbGameHistory.Location = new Point(0, 170);
             cbGameHistory.Name = "cbGameHistory";
-            cbGameHistory.Size = new Size(350, 23);
+            cbGameHistory.Size = new Size(500, 38);
             cbGameHistory.TabIndex = 2;
             // 
             // lblGameHistoryMenu
             // 
             lblGameHistoryMenu.AutoSize = true;
-            lblGameHistoryMenu.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGameHistoryMenu.Location = new Point(225, 82);
+            lblGameHistoryMenu.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGameHistoryMenu.Location = new Point(83, 70);
             lblGameHistoryMenu.Name = "lblGameHistoryMenu";
-            lblGameHistoryMenu.Size = new Size(59, 32);
+            lblGameHistoryMenu.Size = new Size(335, 65);
             lblGameHistoryMenu.TabIndex = 1;
-            lblGameHistoryMenu.Text = "Test";
+            lblGameHistoryMenu.Text = "Choose Game";
             // 
             // GameHistorySelectControl
             // 

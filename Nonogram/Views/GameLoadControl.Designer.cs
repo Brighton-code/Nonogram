@@ -49,7 +49,7 @@
             // btnLoadGame
             // 
             btnLoadGame.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLoadGame.Location = new Point(103, 303);
+            btnLoadGame.Location = new Point(103, 309);
             btnLoadGame.Name = "btnLoadGame";
             btnLoadGame.Size = new Size(300, 90);
             btnLoadGame.TabIndex = 1;
